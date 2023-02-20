@@ -1,266 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
-<nta>
-	<declaration>// Global time. One time unit in Uppaal represents 1 minute
-const int m = 1; // 1 minute = 1 time unit
-const int h = 60*m; // 1 hour = 60 minutes
-clock t; // global time [min]
-
-// Urban catchment
-const double UC_k = 0.25; // Urban surface resevoir reaction factor [cm/min * 1 / cm]
-const double A_UC = 37.0 * 10000.0 * 10000.0; // urban area catchment [cm2], 1 ha = 10000 m2, 1 m2 = 10000 cm2 = [cm/(min*cm)]
-double rain = 0.0; // Rainfall [cm/min]
-clock S_UC = 0.0; // Water surface height urban catchment [cm]
-
-// Rain detention pond
-const int W = 300; // max water height [cm]
-clock w = 100.0; // water level in pond [cm]
-double Qout = 0.0; // pond outflow [cm3/min], will be properly initialized in Controller
-clock o = 0.0; // accumelated overflow time [min]
-
-// Cost function
-clock c = 0.0; // cost function [-]
-
-
-</declaration>
-	<template>
-		<name>Rain</name>
-		<declaration>const int I = 6; // number of intervals. Simulation should finish before the last period is over. Therefore, last period is a large dummy period.
-int i = 0; // current interval index
-
-// Exact values =&gt; const int dryL[I] = {233*m, 71*m, 1529*m, 187*m, 226*m, 24*h};
-//const int dryL[I] = {210*m, 64*m, 1376*m, 168*m, 203*m, 24*h}; // lower bound duration dry period [min]
-const int dryL[I] = {255*m, 77*m, 1681*m, 205*m, 248*m, 24*h}; // upper bound duration dry period [min]
-const int dryU[I] = {256*m, 78*m, 1682*m, 206*m, 249*m, 24*h}; // upper bound duration dry period [min]
-
-// Exact values =&gt; const int rainL[I] = {30*m, 23*m, 55*m, 26*m, 231*m, 24*h};
-//const int rainL[I] = {27*m, 21*m, 49*m, 23*m, 208*m, 24*h}; // lower bound duration raining period [min]
-const int rainL[I] = {32*m, 24*m, 60*m, 28*m, 253*m, 24*h}; // lower bound duration raining period [min]
-const int rainU[I] = {33*m, 25*m, 61*m, 29*m, 254*m, 24*h}; // upper bound duration raining period [min]
-
-const double rainmax[I] = {0.01333, 0.03478, 0.02545, 0.02308, 0.00952, 0.0}; // rain intensity [cm/min], 1 mm/min = 0.1 cm/min
-
-clock d = 0.0; // duration of dry or raining period [min]
-const double e = 0.1; // rain uncertainty factor.
-
-// Returns a sample from a uniform distribution between lower and upper.
-double uniform(double lower, double upper)
-{
-    double distance = upper - lower;
-    double sample = random(distance);
-    return lower + sample;
-}</declaration>
-		<location id="id0" x="-85" y="-8">
-			<name x="-136" y="-17">Dry</name>
-			<label kind="invariant" x="-153" y="8">d &lt;= dryU[i]</label>
-		</location>
-		<location id="id1" x="85" y="-8">
-			<name x="102" y="-25">Raining</name>
-			<label kind="invariant" x="93" y="0">d &lt;= rainU[i]</label>
-		</location>
-		<init ref="id0"/>
-		<transition id="id2" controllable="false">
-			<source ref="id1"/>
-			<target ref="id0"/>
-			<label kind="guard" x="-51" y="34">d &gt;= rainL[i]</label>
-			<label kind="assignment" x="-51" y="51">d = 0,
-i++,
-rain = 0.0</label>
-			<nail x="60" y="34"/>
-			<nail x="-59" y="34"/>
-		</transition>
-		<transition id="id3" controllable="false">
-			<source ref="id0"/>
-			<target ref="id1"/>
-			<label kind="guard" x="-51" y="-110">d &gt;= dryL[i]</label>
-			<label kind="assignment" x="-51" y="-93">d = 0,
-rain = rainmax[i]</label>
-			<nail x="-68" y="-51"/>
-			<nail x="68" y="-51"/>
-		</transition>
-	</template>
-	<template>
-		<name>UrbanCatchment</name>
-		<location id="id4" x="0" y="0">
-			<label kind="invariant" x="-85" y="17">S_UC' == rain - (S_UC * UC_k)</label>
-		</location>
-		<init ref="id4"/>
-	</template>
-	<template>
-		<name>Pond</name>
-		<declaration>// We assume as pond geometry an inverted pyramid with square base, where the base is the surface of the permanent water level. 
-// H represents the height of the pyramid, L represents the area of the pyramid.
-const double H = 1000000.0; // pond geometry H [cm]
-const double L = 7464.5; // pond geometry L [cm], 7464.5 -&gt; 5572 m2 area
-
-// Flow from urban catchment to pond. Eq. 2 in paper.
-double Qin()
-{
-    return S_UC * UC_k * A_UC;
-}
-
-// Dynamics of the water level. Eqs. 4 and 5 in the paper combined.
-double pond_dynamics()
-{
-    if (w &lt;= 0 &amp;&amp; Qin() &lt;= Qout) return 0;
-
-    else if (w &gt;= W &amp;&amp; Qin() &gt;= Qout) return 0; 
-
-    else return H*H/(L*L)/((w+H)*(w+H))*(Qin()-Qout);
-}
-
-// Cummulative overflow duration. Eq. 6 in the paper.
-double overflow()
-{
-    const double epsilon = 0.1; // for numerical precision 
-    if (w &gt;= W - epsilon) return 1.0;
-    
-    else return 0.0;
-}
-
-
-//.........................
-// Noise functions 
-//.........................
-
-const double e = 0.1; // sensor uncertainty factor. 
-
-// noise function - uniform distribution (from Martijn) 
-double uniform(double lower, double upper)
-{
-    double distance = upper - lower; 
-    double sample = random(distance); 
-    return lower + sample; 
-}
-
-</declaration>
-		<location id="id5" x="0" y="0">
-			<label kind="invariant" x="-76" y="17">w' == pond_dynamics() &amp;&amp;
-o' == overflow()</label>
-			<label kind="exponentialrate" x="-25" y="-8">1</label>
-		</location>
-		<init ref="id5"/>
-	</template>
-	<template>
-		<name>Controller</name>
-		<declaration>const int P = h; // control switching period [min]
-const double Qomax = 60.0 * 95000.0; // max outflow [cm3/min], 95000 cm3/s = 95 l/s
-const int C = 3; // number of control modes
-const double Qoutv[C] = {(1.0/6.0)*Qomax, (2.0/3.0)*Qomax, (3.0/3.0)*Qomax}; // outflow modes
-clock x = 0.0; // control switching clock
-
-</declaration>
-		<location id="id6" x="0" y="0">
-			<label kind="invariant" x="-25" y="17">x&lt;=(P+1)</label>
-		</location>
-		<location id="id7" x="-178" y="0">
-			<urgent/>
-		</location>
-		<location id="id8" x="136" y="0">
-			<urgent/>
-		</location>
-		<init ref="id7"/>
-		<transition id="id9">
-			<source ref="id8"/>
-			<target ref="id6"/>
-			<label kind="select" x="17" y="-102">i:int[0,C-1]</label>
-			<label kind="assignment" x="0" y="-85">x=0, Qout=Qoutv[i]</label>
-			<nail x="136" y="-59"/>
-			<nail x="0" y="-59"/>
-		</transition>
-		<transition id="id10" controllable="false">
-			<source ref="id6"/>
-			<target ref="id8"/>
-			<label kind="guard" x="59" y="0">x&gt;=P</label>
-		</transition>
-		<transition id="id11">
-			<source ref="id7"/>
-			<target ref="id6"/>
-			<label kind="select" x="-127" y="-17">i:int[0,C-1]</label>
-			<label kind="assignment" x="-144" y="0">Qout=Qoutv[i]</label>
-		</transition>
-	</template>
-	<template>
-		<name>Cost</name>
-		<declaration>// This cost function from Martijn's ADHS 21 paper. 
-// This cost function considers Partical sedimentation, but no overflow. </declaration>
-		<location id="id12" x="-246" y="-17">
-			<label kind="invariant" x="-365" y="0">c' == 100*pow(w/W,20) + (1-(w/W))</label>
-		</location>
-		<init ref="id12"/>
-	</template>
-	<system>
-//Sensor = SensorGaussian(0.0); // If you want to change std, change the value. 
-//ga01 = SensorGaussian(5.0, 1);
-//ga02 = SensorGaussian(10.0, 2);
-//ga03 = SensorGaussian(15.0, 3);
-
-//uni = SensorUniform(0.0); // If you want to change error range, change the value. 
-//uni01 = SensorGaussian(1.0, 1);
-//uni02 = SensorGaussian(2.0, 2);
-//uni03 = SensorGaussian(3.0, 3);
-
-system Pond, Rain, Controller, UrbanCatchment, Cost;
-</system>
-	<queries>
-		<option key="--total-runs" value="100"/>
-		<option key="--discretization" value="0.1"/>
-		<option key="--max-iterations" value="100"/>
-		<option key="--good-runs" value="100"/>
-		<option key="--eval-runs" value="10"/>
-		<option key="--runs-pr-state" value="100"/>
-		<query>
-			<formula>// Optimal control (full observation)</formula>
-			<comment>comment: rain's duration and intensity has been fixed. </comment>
-		</query>
-		<query>
-			<formula>strategy opt_fullob = minE (c) [&lt;=72*h] {} -&gt; {rain, w}: &lt;&gt; (t==72*h)</formula>
-			<comment>Expected running time:00
-
-**Learning parameters: 
-successful runs: 100 
-maximum runs: 100 
-good runs: 100 
-runs to evaluate: 10 
-total maximal number of iternations: 100
-limitation iterations: 5
-
-**Statistical parameters: 
-Discretization step for hybrid systems:  0.1</comment>
-			<result outcome="success" type="quality" timestamp="2023-02-20 12:54:39 +0100">
-				<option key="--total-runs" value="100"/>
-				<option key="--discretization" value="0.1"/>
-				<option key="--max-iterations" value="100"/>
-				<option key="--good-runs" value="100"/>
-				<option key="--eval-runs" value="10"/>
-				<option key="--runs-pr-state" value="100"/>
-			</result>
-		</query>
-		<query>
-			<formula>saveStrategy("C:\Users\sj81ko\Desktop\Project\paper_partial observation\uppaal_po\strategy_fullob_100cost_100runs_1", opt_fullob)</formula>
-			<comment/>
-			<result outcome="success" type="quality" timestamp="2023-02-20 12:54:39 +0100">
-				<option key="--total-runs" value="100"/>
-				<option key="--discretization" value="0.1"/>
-				<option key="--max-iterations" value="100"/>
-				<option key="--good-runs" value="100"/>
-				<option key="--eval-runs" value="10"/>
-				<option key="--runs-pr-state" value="100"/>
-			</result>
-		</query>
-		<query>
-			<formula>simulate [&lt;=72*h;10] {w} under opt_fullob</formula>
-			<comment>w: water level height 
-This query shows simulation results of water level. </comment>
-			<result outcome="success" type="quality" timestamp="2023-02-20 12:54:44 +0100">
-				<option key="--total-runs" value="100"/>
-				<option key="--discretization" value="0.1"/>
-				<option key="--max-iterations" value="100"/>
-				<option key="--good-runs" value="100"/>
-				<option key="--eval-runs" value="10"/>
-				<option key="--runs-pr-state" value="100"/>
-				<plot title="Simulations (10)" xaxis="time" yaxis="value">
-					<series title="w" type="l" color="0xff0000" encoding="csv">0.0,100.0
+#### Simulations (10)
+# w #1
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -4104,8 +3844,8 @@ This query shows simulation results of water level. </comment>
 4317.2494752249695,105.06436780368907
 4318.749475224975,104.96208980879068
 4320.0,104.87682234841597
-					</series>
-					<series title="" type="l" color="0xff0909" encoding="csv">0.0,100.0
+# w #2
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -7941,8 +7681,8 @@ This query shows simulation results of water level. </comment>
 4318.308040207037,104.36755349007855
 4319.808040207043,104.26527535265744
 4320.0,104.25218649108855
-					</series>
-					<series title="" type="l" color="0xff1212" encoding="csv">0.0,100.0
+# w #3
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -11736,8 +11476,8 @@ This query shows simulation results of water level. </comment>
 4318.1749017681595,105.56476555905024
 4319.674901768165,105.4624876665004
 4320.0,105.44032075571762
-					</series>
-					<series title="" type="l" color="0xff1b1b" encoding="csv">0.0,100.0
+# w #4
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -15599,8 +15339,8 @@ This query shows simulation results of water level. </comment>
 4317.999167693905,100.9361388858558
 4319.499167693911,100.83386004658679
 4320.0,100.7997103439712
-					</series>
-					<series title="" type="l" color="0xff2424" encoding="csv">0.0,100.0
+# w #5
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -19459,8 +19199,8 @@ This query shows simulation results of water level. </comment>
 4317.731855437121,105.0141267089244
 4319.231855437127,104.91184870374994
 4320.0,104.85947249992319
-					</series>
-					<series title="" type="l" color="0xff2d2d" encoding="csv">0.0,100.0
+# w #6
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -23303,8 +23043,8 @@ This query shows simulation results of water level. </comment>
 4318.294022391188,106.31063535587815
 4319.794022391194,106.20835761588403
 4320.0,106.19431299803588
-					</series>
-					<series title="" type="l" color="0xff3636" encoding="csv">0.0,100.0
+# w #7
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -27155,8 +26895,8 @@ This query shows simulation results of water level. </comment>
 4317.243700399639,101.96778262822664
 4318.743700399645,101.8655039999667
 4320.0,101.77984225065268
-					</series>
-					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,100.0
+# w #8
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -31011,8 +30751,8 @@ This query shows simulation results of water level. </comment>
 4318.091769707364,104.4252997963853
 4319.591769707369,104.3230216707753
 4320.0,104.2951863143855
-					</series>
-					<series title="" type="l" color="0xff4747" encoding="csv">0.0,100.0
+# w #9
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -34874,8 +34614,8 @@ This query shows simulation results of water level. </comment>
 4317.051350118162,101.04016938314138
 4318.551350118168,100.93789056515047
 4320.0,100.83911308021706
-					</series>
-					<series title="" type="l" color="0xff5050" encoding="csv">0.0,100.0
+# w #10
+0.0,100.0
 1.0,99.89772096890698
 2.0,99.79544191689405
 3.0,99.69316284396119
@@ -38733,371 +38473,3 @@ This query shows simulation results of water level. </comment>
 4317.817173734989,104.86391517363798
 4319.317173734995,104.76163713774008
 4320.0,104.71507837797522
-					</series>
-					<comment/>
-				</plot>
-			</result>
-		</query>
-		<query>
-			<formula>E[&lt;=72*h; 1000] (max:c) under opt_fullob</formula>
-			<comment/>
-			<result outcome="success" type="quantity" value="2776.48 ± 0.711688 (95% CI)" timestamp="2023-02-20 13:03:07 +0100">
-				<option key="--total-runs" value="100"/>
-				<option key="--discretization" value="0.1"/>
-				<option key="--max-iterations" value="100"/>
-				<option key="--good-runs" value="100"/>
-				<option key="--eval-runs" value="10"/>
-				<option key="--runs-pr-state" value="100"/>
-				<details>2776.48 ± 0.711688 (95% CI)</details>
-				<plot title="Probability Density Distribution" xaxis="max: c" yaxis="probability density">
-					<series title="density" type="b(1.480318)" color="0x0000ff" encoding="csv">2758.4807784208347,0.002702122229486161
-2759.9610963562527,0.010132958360573104
-2761.4414142916708,0.02769675285223315
-2762.921732227089,0.03512758898332009
-2764.402050162507,0.07363283075349789
-2765.8823680979244,0.05404244458972322
-2767.3626860333425,0.016212733376916966
-2768.8430039687605,0.02364356950800391
-2770.3233219041786,0.05066479180286552
-2771.8036398395966,0.05809562793395246
-2773.2839577750146,0.048638200130750896
-2774.7642757104327,0.01959038616377467
-2776.2445936458507,0.006755305573715402
-2777.7249115812683,0.007430836131086943
-2779.2052295166864,0.014861672262173886
-2780.6855474521044,0.012835080590059264
-2782.1658653875224,0.006755305573715402
-2783.6461833229405,0.008781897245830023
-2785.1265012583585,0.018914855606403127
-2786.6068191937766,0.014186141704802346
-2788.0871371291946,0.031074405639090853
-2789.567455064612,0.025670161180118528
-2791.0477730000302,0.024319100065375448
-2792.5280909354483,0.01959038616377467
-2794.0084088708663,0.013510611147430804
-2795.4887268062844,0.02094144727851775
-2796.9690447417024,0.013510611147430804
-2798.4493626771205,0.005404244458972322
-2799.9296806125385,0.003377652786857701
-2801.409998547956,0.003377652786857701
-2802.890316483374,0.002702122229486161
-2804.370634418792,0.0013510611147430805
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">2776.4768600518264,0.0
-2776.4768600518264,0.07363283075349789
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=1.4803, bucket count=32
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [2758.481, 2805.851]
-Mean estimate of displayed sample: 2776.477 ± 0.7116884 (95% CI)</comment>
-				</plot>
-				<plot title="Probability Distribution" xaxis="max: c" yaxis="probability">
-					<series title="probability" type="b(1.480318)" color="0x0000ff" encoding="csv">2758.4807784208347,0.004
-2759.9610963562527,0.015
-2761.4414142916708,0.041
-2762.921732227089,0.052
-2764.402050162507,0.109
-2765.8823680979244,0.08
-2767.3626860333425,0.024
-2768.8430039687605,0.035
-2770.3233219041786,0.075
-2771.8036398395966,0.086
-2773.2839577750146,0.072
-2774.7642757104327,0.029
-2776.2445936458507,0.01
-2777.7249115812683,0.011
-2779.2052295166864,0.022
-2780.6855474521044,0.019
-2782.1658653875224,0.01
-2783.6461833229405,0.013
-2785.1265012583585,0.028
-2786.6068191937766,0.021
-2788.0871371291946,0.046
-2789.567455064612,0.038
-2791.0477730000302,0.036
-2792.5280909354483,0.029
-2794.0084088708663,0.02
-2795.4887268062844,0.031
-2796.9690447417024,0.02
-2798.4493626771205,0.008
-2799.9296806125385,0.005
-2801.409998547956,0.005
-2802.890316483374,0.004
-2804.370634418792,0.002
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">2776.4768600518264,0.0
-2776.4768600518264,0.109
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=1.4803, bucket count=32
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [2758.481, 2805.851]
-Mean estimate of displayed sample: 2776.477 ± 0.7116884 (95% CI)</comment>
-				</plot>
-				<plot title="Cumulative Probability Distribution" xaxis="max: c" yaxis="probability">
-					<series title="cumulative" type="l" color="0x000000" encoding="csv">2758.4807784208347,0.0
-2759.9610963562527,0.004
-2761.4414142916708,0.019
-2762.921732227089,0.06
-2764.402050162507,0.112
-2765.8823680979244,0.221
-2767.3626860333425,0.301
-2768.8430039687605,0.325
-2770.3233219041786,0.36
-2771.8036398395966,0.435
-2773.2839577750146,0.521
-2774.7642757104327,0.593
-2776.2445936458507,0.622
-2777.7249115812683,0.632
-2779.2052295166864,0.643
-2780.6855474521044,0.665
-2782.1658653875224,0.684
-2783.6461833229405,0.694
-2785.1265012583585,0.707
-2786.6068191937766,0.735
-2788.0871371291946,0.756
-2789.567455064612,0.802
-2791.0477730000302,0.84
-2792.5280909354483,0.876
-2794.0084088708663,0.905
-2795.4887268062844,0.925
-2796.9690447417024,0.956
-2798.4493626771205,0.976
-2799.9296806125385,0.984
-2801.409998547956,0.989
-2802.890316483374,0.994
-2804.370634418792,0.998
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">2776.4768600518264,0.0
-2776.4768600518264,1.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=1.4803, bucket count=32
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [2758.481, 2805.851]
-Mean estimate of displayed sample: 2776.477 ± 0.7116884 (95% CI)</comment>
-				</plot>
-				<plot title="Cumulative Probability Confidence Intervals" xaxis="max: c" yaxis="probability">
-					<series title="upper limit" type="k" color="0x0000dd" encoding="csv">2758.4807784208347,0.003682083896865672
-2759.9610963562527,0.010209664683929873
-2761.4414142916708,0.0295124016250978
-2762.921732227089,0.07656049040393477
-2764.402050162507,0.13319916556924022
-2765.8823680979244,0.2480184632116429
-2767.3626860333425,0.3304856080554492
-2768.8430039687605,0.35501293143742974
-2770.3233219041786,0.39062793237940346
-2771.8036398395966,0.4663803863213059
-2773.2839577750146,0.5523615687672607
-2774.7642757104327,0.6236368227183563
-2776.2445936458507,0.6521562251530795
-2777.7249115812683,0.6619642863850408
-2779.2052295166864,0.6727372150985135
-2780.6855474521044,0.6942316401097941
-2782.1658653875224,0.712737788048678
-2783.6461833229405,0.7224557016271423
-2785.1265012583585,0.7350652822207449
-2786.6068191937766,0.7621286221063013
-2788.0871371291946,0.7823341107384539
-2789.567455064612,0.8262802188958505
-2791.0477730000302,0.8621948147781167
-2792.5280909354483,0.8957968808047537
-2794.0084088708663,0.922459792918345
-2795.4887268062844,0.9405538717887368
-2796.9690447417024,0.9678505029891286
-2798.4493626771205,0.9845636167664915
-2799.9296806125385,0.9908276807307779
-2801.409998547956,0.9944964058076864
-2802.890316483374,0.9977950175148487
-2804.370634418792,0.9997576988831227
-					</series>
-					<series title="lower limit" type="k" color="0xdd0000" encoding="csv">2758.4807784208347,0.0
-2759.9610963562527,0.0010909079877259719
-2761.4414142916708,0.011477036993100943
-2762.921732227089,0.04609503542248433
-2764.402050162507,0.09311853992161026
-2765.8823680979244,0.19563537445283835
-2767.3626860333425,0.27269124387933186
-2768.8430039687605,0.29602151106131647
-2770.3233219041786,0.3301991830442188
-2771.8036398395966,0.40400337063157615
-2773.2839577750146,0.48951446776882196
-2774.7642757104327,0.5618140058593495
-2776.2445936458507,0.5911231581097954
-2777.7249115812683,0.6012559400774757
-2779.2052295166864,0.6124179122210397
-2780.6855474521044,0.6347931918497084
-2782.1658653875224,0.6541743923933121
-2783.6461833229405,0.6643971343161432
-2785.1265012583585,0.6777103418972616
-2786.6068191937766,0.706480408795717
-2788.0871371291946,0.728149654013983
-2789.567455064612,0.7759277948283817
-2791.0477730000302,0.8157832472414973
-2792.5280909354483,0.8539601750294527
-2794.0084088708663,0.885115155595548
-2795.4887268062844,0.9068915530385009
-2796.9690447417024,0.9413795807936691
-2798.4493626771205,0.9644993614686408
-2799.9296806125385,0.9741467509186266
-2801.409998547956,0.9804033717779835
-2802.890316483374,0.9869865767290255
-2804.370634418792,0.9927941610885425
-					</series>
-					<series title="cumulative" type="l" color="0x000000" encoding="csv">2758.4807784208347,0.0
-2759.9610963562527,0.004
-2761.4414142916708,0.019
-2762.921732227089,0.06
-2764.402050162507,0.112
-2765.8823680979244,0.221
-2767.3626860333425,0.301
-2768.8430039687605,0.325
-2770.3233219041786,0.36
-2771.8036398395966,0.435
-2773.2839577750146,0.521
-2774.7642757104327,0.593
-2776.2445936458507,0.622
-2777.7249115812683,0.632
-2779.2052295166864,0.643
-2780.6855474521044,0.665
-2782.1658653875224,0.684
-2783.6461833229405,0.694
-2785.1265012583585,0.707
-2786.6068191937766,0.735
-2788.0871371291946,0.756
-2789.567455064612,0.802
-2791.0477730000302,0.84
-2792.5280909354483,0.876
-2794.0084088708663,0.905
-2795.4887268062844,0.925
-2796.9690447417024,0.956
-2798.4493626771205,0.976
-2799.9296806125385,0.984
-2801.409998547956,0.989
-2802.890316483374,0.994
-2804.370634418792,0.998
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">2776.4768600518264,0.0
-2776.4768600518264,1.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=1.4803, bucket count=32
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [2758.481, 2805.851]
-Mean estimate of displayed sample: 2776.477 ± 0.7116884 (95% CI)</comment>
-				</plot>
-				<plot title="Frequency Histogram" xaxis="max: c" yaxis="count">
-					<series title="count" type="b(1.480318)" color="0x0000ff" encoding="csv">2758.4807784208347,4.0
-2759.9610963562527,15.0
-2761.4414142916708,41.0
-2762.921732227089,52.0
-2764.402050162507,109.0
-2765.8823680979244,80.0
-2767.3626860333425,24.0
-2768.8430039687605,35.0
-2770.3233219041786,75.0
-2771.8036398395966,86.0
-2773.2839577750146,72.0
-2774.7642757104327,29.0
-2776.2445936458507,10.0
-2777.7249115812683,11.0
-2779.2052295166864,22.0
-2780.6855474521044,19.0
-2782.1658653875224,10.0
-2783.6461833229405,13.0
-2785.1265012583585,28.0
-2786.6068191937766,21.0
-2788.0871371291946,46.0
-2789.567455064612,38.0
-2791.0477730000302,36.0
-2792.5280909354483,29.0
-2794.0084088708663,20.0
-2795.4887268062844,31.0
-2796.9690447417024,20.0
-2798.4493626771205,8.0
-2799.9296806125385,5.0
-2801.409998547956,5.0
-2802.890316483374,4.0
-2804.370634418792,2.0
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">2776.4768600518264,0.0
-2776.4768600518264,109.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=1.4803, bucket count=32
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [2758.481, 2805.851]
-Mean estimate of displayed sample: 2776.477 ± 0.7116884 (95% CI)</comment>
-				</plot>
-			</result>
-		</query>
-		<query>
-			<formula>E[&lt;=72*h; 1000] (max:o) under opt_fullob</formula>
-			<comment/>
-			<result outcome="success" type="quantity" value="≈ 0" timestamp="2023-02-20 13:11:27 +0100">
-				<option key="--total-runs" value="100"/>
-				<option key="--discretization" value="0.1"/>
-				<option key="--max-iterations" value="100"/>
-				<option key="--good-runs" value="100"/>
-				<option key="--eval-runs" value="10"/>
-				<option key="--runs-pr-state" value="100"/>
-				<details>≈ 0</details>
-				<plot title="Probability Density Distribution" xaxis="max: o" yaxis="probability density">
-					<series title="density" type="b(0.000000)" color="0x0000ff" encoding="csv">0.0,4.503599627370496E15
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">0.0,0.0
-0.0,4.503599627370496E15
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.2204e-16, bucket count=1
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [0, 0]
-Mean estimate of displayed sample: ≈ 0</comment>
-				</plot>
-				<plot title="Probability Distribution" xaxis="max: o" yaxis="probability">
-					<series title="probability" type="b(0.000000)" color="0x0000ff" encoding="csv">0.0,1.0
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">0.0,0.0
-0.0,1.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.2204e-16, bucket count=1
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [0, 0]
-Mean estimate of displayed sample: ≈ 0</comment>
-				</plot>
-				<plot title="Cumulative Probability Distribution" xaxis="max: o" yaxis="probability">
-					<series title="cumulative" type="l" color="0x000000" encoding="csv">0.0,0.0
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">0.0,0.0
-0.0,1.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.2204e-16, bucket count=1
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [0, 0]
-Mean estimate of displayed sample: ≈ 0</comment>
-				</plot>
-				<plot title="Cumulative Probability Confidence Intervals" xaxis="max: o" yaxis="probability">
-					<series title="upper limit" type="k" color="0x0000dd" encoding="csv">0.0,0.003682083896865672
-					</series>
-					<series title="lower limit" type="k" color="0xdd0000" encoding="csv">0.0,0.0
-					</series>
-					<series title="cumulative" type="l" color="0x000000" encoding="csv">0.0,0.0
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">0.0,0.0
-0.0,1.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.2204e-16, bucket count=1
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [0, 0]
-Mean estimate of displayed sample: ≈ 0</comment>
-				</plot>
-				<plot title="Frequency Histogram" xaxis="max: o" yaxis="count">
-					<series title="count" type="b(0.000000)" color="0x0000ff" encoding="csv">0.0,1000.0
-					</series>
-					<series title="average" type="pl" color="0x00dd00" encoding="csv">0.0,0.0
-0.0,1000.0
-					</series>
-					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.2204e-16, bucket count=1
-Runs: 1000 in total, 1000 (100%) displayed, 0 (0%) remaining
-Span of displayed sample: [0, 0]
-Mean estimate of displayed sample: ≈ 0</comment>
-				</plot>
-			</result>
-		</query>
-	</queries>
-</nta>

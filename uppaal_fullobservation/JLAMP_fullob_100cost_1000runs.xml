@@ -29,15 +29,16 @@ clock c = 0.0; // cost function [-]
 int i = 0; // current interval index
 
 // Exact values =&gt; const int dryL[I] = {233*m, 71*m, 1529*m, 187*m, 226*m, 24*h};
-const int dryL[I] = {210*m, 64*m, 1376*m, 168*m, 203*m, 24*h}; // lower bound duration dry period [min]
+//const int dryL[I] = {210*m, 64*m, 1376*m, 168*m, 203*m, 24*h}; // lower bound duration dry period [min]
+const int dryL[I] = {255*m, 77*m, 1681*m, 205*m, 248*m, 24*h}; // upper bound duration dry period [min]
 const int dryU[I] = {256*m, 78*m, 1682*m, 206*m, 249*m, 24*h}; // upper bound duration dry period [min]
 
 // Exact values =&gt; const int rainL[I] = {30*m, 23*m, 55*m, 26*m, 231*m, 24*h};
-const int rainL[I] = {27*m, 21*m, 49*m, 23*m, 208*m, 24*h}; // lower bound duration raining period [min]
+//const int rainL[I] = {27*m, 21*m, 49*m, 23*m, 208*m, 24*h}; // lower bound duration raining period [min]
+const int rainL[I] = {32*m, 24*m, 60*m, 28*m, 253*m, 24*h}; // lower bound duration raining period [min]
 const int rainU[I] = {33*m, 25*m, 61*m, 29*m, 254*m, 24*h}; // upper bound duration raining period [min]
 
 const double rainmax[I] = {0.01333, 0.03478, 0.02545, 0.02308, 0.00952, 0.0}; // rain intensity [cm/min], 1 mm/min = 0.1 cm/min
-
 
 clock d = 0.0; // duration of dry or raining period [min]
 const double e = 0.1; // rain uncertainty factor.
@@ -48,7 +49,8 @@ double uniform(double lower, double upper)
     double distance = upper - lower;
     double sample = random(distance);
     return lower + sample;
-}</declaration>
+}
+</declaration>
 		<location id="id0" x="-85" y="-8">
 			<name x="-136" y="-17">Dry</name>
 			<label kind="invariant" x="-153" y="8">d &lt;= dryU[i]</label>
@@ -73,7 +75,7 @@ rain = 0.0</label>
 			<target ref="id1"/>
 			<label kind="guard" x="-51" y="-110">d &gt;= dryL[i]</label>
 			<label kind="assignment" x="-51" y="-93">d = 0,
-rain = rainmax[i]*uniform(1 - e, 1 + e)</label>
+rain = rainmax[i]</label>
 			<nail x="-68" y="-51"/>
 			<nail x="68" y="-51"/>
 		</transition>
@@ -210,7 +212,7 @@ system Pond, Rain, Controller, UrbanCatchment, Cost;
 		<option key="--runs-pr-state" value="1000"/>
 		<query>
 			<formula>// Optimal control (full observation)</formula>
-			<comment>purpose: the result of observing this sensor_w or w should be same. </comment>
+			<comment>comment: rain's duration and intensity has been fixed</comment>
 		</query>
 		<query>
 			<formula>strategy opt_fullob = minE (c) [&lt;=72*h] {} -&gt; {rain, w}: &lt;&gt; (t==72*h)</formula>
