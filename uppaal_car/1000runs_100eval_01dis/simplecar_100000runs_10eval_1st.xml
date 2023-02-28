@@ -1,0 +1,5906 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock fc = 0.0; </declaration>
+	<template>
+		<name x="5" y="5">Car</name>
+		<declaration>// Place local declarations here.
+clock x; </declaration>
+		<location id="id0" x="-238" y="0">
+			<name x="-263" y="-34">Start</name>
+			<urgent/>
+		</location>
+		<location id="id1" x="-170" y="-68">
+			<name x="-178" y="-102">Slow</name>
+			<label kind="invariant" x="-136" y="-102">fc'==3 &amp;&amp; x&lt;=100</label>
+		</location>
+		<location id="id2" x="-170" y="68">
+			<name x="-161" y="42">Fast</name>
+			<label kind="invariant" x="-119" y="42">fc'==10 &amp;&amp; x&lt;=50</label>
+		</location>
+		<location id="id3" x="178" y="0">
+			<name x="195" y="-8">End</name>
+			<label kind="invariant" x="229" y="-8">fc'==0</label>
+		</location>
+		<location id="id4" x="-170" y="0">
+			<name x="-180" y="-34">Medium</name>
+			<label kind="invariant" x="-127" y="-34">fc'==6 &amp;&amp; x&lt;=70</label>
+		</location>
+		<init ref="id0"/>
+		<transition id="id5" controllable="false">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="144" y="42">x=0</label>
+			<nail x="178" y="68"/>
+			<nail x="178" y="68"/>
+		</transition>
+		<transition id="id6" controllable="false">
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="144" y="-25">x=0</label>
+		</transition>
+		<transition id="id7" controllable="false">
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="144" y="-93">x=0</label>
+			<nail x="178" y="-68"/>
+		</transition>
+		<transition id="id8">
+			<source ref="id0"/>
+			<target ref="id4"/>
+			<nail x="-187" y="0"/>
+		</transition>
+		<transition id="id9">
+			<source ref="id0"/>
+			<target ref="id2"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id0"/>
+			<target ref="id1"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+//Process = Template();
+// List one or more processes to be composed into a system.
+system Car;
+</system>
+	<queries>
+		<option key="--total-runs" value="10000"/>
+		<option key="--discretization" value="0.1"/>
+		<option key="--max-iterations" value="10"/>
+		<option key="--eval-runs" value="10"/>
+		<option key="--good-runs" value="10000"/>
+		<option key="--runs-pr-state" value="10000"/>
+		<option key="--max-imitation" value="10"/>
+		<query>
+			<formula>// Random control </formula>
+			<comment/>
+		</query>
+		<query>
+			<formula>simulate [&lt;=200;100] {fc}</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2023-02-28 09:15:54 +0100">
+				<option key="--total-runs" value="10"/>
+				<option key="--discretization" value="0.1"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10"/>
+				<option key="--runs-pr-state" value="10"/>
+				<option key="--max-imitation" value="10"/>
+				<plot title="Simulations (100)" xaxis="time" yaxis="value">
+					<series title="fc" type="l" color="0xff0000" encoding="csv">0.0,0.0
+59.77691686712206,179.3307506013662
+200.0,179.3307506013662
+					</series>
+					<series title="" type="l" color="0xff0101" encoding="csv">0.0,0.0
+15.78502601478249,47.35507804434747
+200.0,47.35507804434747
+					</series>
+					<series title="" type="l" color="0xff0202" encoding="csv">0.0,0.0
+35.489970287308104,212.93982172384864
+200.0,212.93982172384864
+					</series>
+					<series title="" type="l" color="0xff0303" encoding="csv">0.0,0.0
+60.53071671631188,181.59215014893564
+200.0,181.59215014893564
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+37.07888036733494,370.7888036733494
+200.0,370.7888036733494
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+11.825173138640823,118.25173138640822
+200.0,118.25173138640822
+					</series>
+					<series title="" type="l" color="0xff0505" encoding="csv">0.0,0.0
+86.074261716567,258.222785149701
+200.0,258.222785149701
+					</series>
+					<series title="" type="l" color="0xff0606" encoding="csv">0.0,0.0
+86.08312311116607,258.24936933349824
+200.0,258.24936933349824
+					</series>
+					<series title="" type="l" color="0xff0707" encoding="csv">0.0,0.0
+21.311535581480715,213.11535581480715
+200.0,213.11535581480715
+					</series>
+					<series title="" type="l" color="0xff0808" encoding="csv">0.0,0.0
+10.0956107955426,30.2868323866278
+200.0,30.2868323866278
+					</series>
+					<series title="" type="l" color="0xff0909" encoding="csv">0.0,0.0
+24.657725787255917,246.57725787255916
+200.0,246.57725787255916
+					</series>
+					<series title="" type="l" color="0xff0a0a" encoding="csv">0.0,0.0
+15.448405640199782,154.48405640199783
+200.0,154.48405640199783
+					</series>
+					<series title="" type="l" color="0xff0b0b" encoding="csv">0.0,0.0
+2.3042714223265652,6.912814266979696
+200.0,6.912814266979696
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+66.55337040778251,399.3202224466951
+200.0,399.3202224466951
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+7.554426009301097,75.54426009301098
+200.0,75.54426009301098
+					</series>
+					<series title="" type="l" color="0xff0d0d" encoding="csv">0.0,0.0
+66.96907718665899,401.814463119954
+200.0,401.814463119954
+					</series>
+					<series title="" type="l" color="0xff0e0e" encoding="csv">0.0,0.0
+46.27359411679209,138.82078235037628
+200.0,138.82078235037628
+					</series>
+					<series title="" type="l" color="0xff0f0f" encoding="csv">0.0,0.0
+22.72805408574641,227.2805408574641
+200.0,227.2805408574641
+					</series>
+					<series title="" type="l" color="0xff1010" encoding="csv">0.0,0.0
+35.05849182838575,350.58491828385746
+200.0,350.58491828385746
+					</series>
+					<series title="" type="l" color="0xff1111" encoding="csv">0.0,0.0
+62.20342771383004,373.22056628298026
+200.0,373.22056628298026
+					</series>
+					<series title="" type="l" color="0xff1212" encoding="csv">0.0,0.0
+38.94868588307873,233.6921152984724
+200.0,233.6921152984724
+					</series>
+					<series title="" type="l" color="0xff1313" encoding="csv">0.0,0.0
+12.946000695228578,129.4600069522858
+200.0,129.4600069522858
+					</series>
+					<series title="" type="l" color="0xff1414" encoding="csv">0.0,0.0
+65.85399652831258,197.56198958493775
+200.0,197.56198958493775
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+23.289864349644635,139.73918609786782
+200.0,139.73918609786782
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+94.3456925917417,283.0370777752251
+200.0,283.0370777752251
+					</series>
+					<series title="" type="l" color="0xff1616" encoding="csv">0.0,0.0
+25.0465122750029,75.1395368250087
+200.0,75.1395368250087
+					</series>
+					<series title="" type="l" color="0xff1717" encoding="csv">0.0,0.0
+99.85300151165576,299.5590045349673
+200.0,299.5590045349673
+					</series>
+					<series title="" type="l" color="0xff1818" encoding="csv">0.0,0.0
+54.9924089247361,329.9544535484166
+200.0,329.9544535484166
+					</series>
+					<series title="" type="l" color="0xff1919" encoding="csv">0.0,0.0
+27.25941092940048,163.5564655764029
+200.0,163.5564655764029
+					</series>
+					<series title="" type="l" color="0xff1a1a" encoding="csv">0.0,0.0
+28.263432451058183,282.63432451058185
+200.0,282.63432451058185
+					</series>
+					<series title="" type="l" color="0xff1b1b" encoding="csv">0.0,0.0
+99.8894235584885,299.6682706754655
+200.0,299.6682706754655
+					</series>
+					<series title="" type="l" color="0xff1c1c" encoding="csv">0.0,0.0
+0.3606216399930418,3.606216399930418
+200.0,3.606216399930418
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+4.31661275215447,43.1661275215447
+200.0,43.1661275215447
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+9.405205992516132,94.05205992516132
+200.0,94.05205992516132
+					</series>
+					<series title="" type="l" color="0xff1e1e" encoding="csv">0.0,0.0
+57.68335775937886,173.05007327813658
+200.0,173.05007327813658
+					</series>
+					<series title="" type="l" color="0xff1f1f" encoding="csv">0.0,0.0
+19.277320737019185,115.66392442211512
+200.0,115.66392442211512
+					</series>
+					<series title="" type="l" color="0xff2020" encoding="csv">0.0,0.0
+36.915300250984735,369.15300250984734
+200.0,369.15300250984734
+					</series>
+					<series title="" type="l" color="0xff2121" encoding="csv">0.0,0.0
+65.78428040258588,394.7056824155153
+200.0,394.7056824155153
+					</series>
+					<series title="" type="l" color="0xff2222" encoding="csv">0.0,0.0
+11.012748780194672,66.07649268116803
+200.0,66.07649268116803
+					</series>
+					<series title="" type="l" color="0xff2323" encoding="csv">0.0,0.0
+28.612056607380513,85.83616982214154
+200.0,85.83616982214154
+					</series>
+					<series title="" type="l" color="0xff2424" encoding="csv">0.0,0.0
+25.469787616748366,254.69787616748366
+200.0,254.69787616748366
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+25.20657194545493,252.06571945454928
+200.0,252.06571945454928
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+69.29564420599492,415.77386523596954
+200.0,415.77386523596954
+					</series>
+					<series title="" type="l" color="0xff2626" encoding="csv">0.0,0.0
+55.20009214524181,331.2005528714509
+200.0,331.2005528714509
+					</series>
+					<series title="" type="l" color="0xff2727" encoding="csv">0.0,0.0
+23.572128240484748,141.4327694429085
+200.0,141.4327694429085
+					</series>
+					<series title="" type="l" color="0xff2828" encoding="csv">0.0,0.0
+1.9934598822146656,5.980379646643997
+200.0,5.980379646643997
+					</series>
+					<series title="" type="l" color="0xff2929" encoding="csv">0.0,0.0
+67.78977483045311,203.36932449135935
+200.0,203.36932449135935
+					</series>
+					<series title="" type="l" color="0xff2a2a" encoding="csv">0.0,0.0
+63.843665830791004,191.53099749237302
+200.0,191.53099749237302
+					</series>
+					<series title="" type="l" color="0xff2b2b" encoding="csv">0.0,0.0
+68.45181002747269,410.71086016483616
+200.0,410.71086016483616
+					</series>
+					<series title="" type="l" color="0xff2c2c" encoding="csv">0.0,0.0
+57.41015614476056,344.4609368685634
+200.0,344.4609368685634
+					</series>
+					<series title="" type="l" color="0xff2d2d" encoding="csv">0.0,0.0
+74.06529085710646,222.1958725713194
+200.0,222.1958725713194
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+58.23541751131417,349.41250506788504
+200.0,349.41250506788504
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+43.343933231662966,260.0635993899778
+200.0,260.0635993899778
+					</series>
+					<series title="" type="l" color="0xff2f2f" encoding="csv">0.0,0.0
+20.885825646109883,62.65747693832965
+200.0,62.65747693832965
+					</series>
+					<series title="" type="l" color="0xff3030" encoding="csv">0.0,0.0
+32.28312997380272,193.69877984281635
+200.0,193.69877984281635
+					</series>
+					<series title="" type="l" color="0xff3131" encoding="csv">0.0,0.0
+19.388301623985175,58.16490487195553
+200.0,58.16490487195553
+					</series>
+					<series title="" type="l" color="0xff3232" encoding="csv">0.0,0.0
+61.3988061901182,184.1964185703546
+200.0,184.1964185703546
+					</series>
+					<series title="" type="l" color="0xff3333" encoding="csv">0.0,0.0
+48.71985375648365,487.1985375648365
+200.0,487.1985375648365
+					</series>
+					<series title="" type="l" color="0xff3434" encoding="csv">0.0,0.0
+29.82768905349076,89.48306716047229
+200.0,89.48306716047229
+					</series>
+					<series title="" type="l" color="0xff3535" encoding="csv">0.0,0.0
+16.8740282766521,50.62208482995631
+200.0,50.62208482995631
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+7.161656548269095,42.96993928961457
+200.0,42.96993928961457
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+93.48925820086153,280.4677746025846
+200.0,280.4677746025846
+					</series>
+					<series title="" type="l" color="0xff3737" encoding="csv">0.0,0.0
+28.423856222070757,85.27156866621227
+200.0,85.27156866621227
+					</series>
+					<series title="" type="l" color="0xff3838" encoding="csv">0.0,0.0
+30.796133528929207,307.9613352892921
+200.0,307.9613352892921
+					</series>
+					<series title="" type="l" color="0xff3939" encoding="csv">0.0,0.0
+26.286289305426184,262.86289305426186
+200.0,262.86289305426186
+					</series>
+					<series title="" type="l" color="0xff3a3a" encoding="csv">0.0,0.0
+59.236806910485036,177.71042073145512
+200.0,177.71042073145512
+					</series>
+					<series title="" type="l" color="0xff3b3b" encoding="csv">0.0,0.0
+74.20753741171212,222.6226122351364
+200.0,222.6226122351364
+					</series>
+					<series title="" type="l" color="0xff3c3c" encoding="csv">0.0,0.0
+42.215126932132996,253.290761592798
+200.0,253.290761592798
+					</series>
+					<series title="" type="l" color="0xff3d3d" encoding="csv">0.0,0.0
+8.931853261310609,89.31853261310609
+200.0,89.31853261310609
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+51.25929441768677,307.5557665061206
+200.0,307.5557665061206
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+7.99185922369361,23.97557767108083
+200.0,23.97557767108083
+					</series>
+					<series title="" type="l" color="0xff3f3f" encoding="csv">0.0,0.0
+89.20010540168734,267.60031620506203
+200.0,267.60031620506203
+					</series>
+					<series title="" type="l" color="0xff4040" encoding="csv">0.0,0.0
+37.983543379232295,379.83543379232293
+200.0,379.83543379232293
+					</series>
+					<series title="" type="l" color="0xff4141" encoding="csv">0.0,0.0
+13.249496803618971,79.49698082171383
+200.0,79.49698082171383
+					</series>
+					<series title="" type="l" color="0xff4242" encoding="csv">0.0,0.0
+68.10068354010583,408.60410124063503
+200.0,408.60410124063503
+					</series>
+					<series title="" type="l" color="0xff4343" encoding="csv">0.0,0.0
+42.40184534573928,424.0184534573928
+200.0,424.0184534573928
+					</series>
+					<series title="" type="l" color="0xff4444" encoding="csv">0.0,0.0
+2.934734232258052,29.34734232258052
+200.0,29.34734232258052
+					</series>
+					<series title="" type="l" color="0xff4545" encoding="csv">0.0,0.0
+13.689229150768373,82.13537490461025
+200.0,82.13537490461025
+					</series>
+					<series title="" type="l" color="0xff4646" encoding="csv">0.0,0.0
+2.8965339157730345,17.379203494638208
+200.0,17.379203494638208
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+55.77652182662861,334.6591309597717
+200.0,334.6591309597717
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+14.369392464868726,143.69392464868727
+200.0,143.69392464868727
+					</series>
+					<series title="" type="l" color="0xff4848" encoding="csv">0.0,0.0
+12.447582359891387,124.47582359891386
+200.0,124.47582359891386
+					</series>
+					<series title="" type="l" color="0xff4949" encoding="csv">0.0,0.0
+47.46095314621926,142.3828594386578
+200.0,142.3828594386578
+					</series>
+					<series title="" type="l" color="0xff4a4a" encoding="csv">0.0,0.0
+44.8312858468853,448.312858468853
+200.0,448.312858468853
+					</series>
+					<series title="" type="l" color="0xff4b4b" encoding="csv">0.0,0.0
+7.87075938889757,47.22455633338542
+200.0,47.22455633338542
+					</series>
+					<series title="" type="l" color="0xff4c4c" encoding="csv">0.0,0.0
+46.3355316198431,278.01318971905863
+200.0,278.01318971905863
+					</series>
+					<series title="" type="l" color="0xff4d4d" encoding="csv">0.0,0.0
+27.870784350670878,278.7078435067088
+200.0,278.7078435067088
+					</series>
+					<series title="" type="l" color="0xff4e4e" encoding="csv">0.0,0.0
+20.64017107477412,206.4017107477412
+200.0,206.4017107477412
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+44.50672976905481,267.04037861432886
+200.0,267.04037861432886
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+19.676319668069485,118.05791800841692
+200.0,118.05791800841692
+					</series>
+					<series title="" type="l" color="0xff5050" encoding="csv">0.0,0.0
+5.057461159303785,30.344766955822713
+200.0,30.344766955822713
+					</series>
+					<series title="" type="l" color="0xff5151" encoding="csv">0.0,0.0
+61.0342791536823,183.1028374610469
+200.0,183.1028374610469
+					</series>
+					<series title="" type="l" color="0xff5252" encoding="csv">0.0,0.0
+65.65471067093314,393.9282640255989
+200.0,393.9282640255989
+					</series>
+					<series title="" type="l" color="0xff5353" encoding="csv">0.0,0.0
+25.774589285720143,154.64753571432087
+200.0,154.64753571432087
+					</series>
+					<series title="" type="l" color="0xff5454" encoding="csv">0.0,0.0
+41.19991729967297,123.59975189901891
+200.0,123.59975189901891
+					</series>
+					<series title="" type="l" color="0xff5555" encoding="csv">0.0,0.0
+12.530637176241727,75.18382305745037
+200.0,75.18382305745037
+					</series>
+					<series title="" type="l" color="0xff5656" encoding="csv">0.0,0.0
+3.1112746801227336,9.333824040368201
+200.0,9.333824040368201
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+18.723916332237426,187.23916332237425
+200.0,187.23916332237425
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+50.990294804796584,305.9417688287795
+200.0,305.9417688287795
+					</series>
+					<series title="" type="l" color="0xff5858" encoding="csv">0.0,0.0
+56.95403332356364,170.86209997069093
+200.0,170.86209997069093
+					</series>
+					<comment/>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula>simulate [&lt;=200;100] {Car.Slow, Car.Medium-4, Car.Fast-8, Car.End-12}</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2023-02-28 09:04:09 +0100">
+				<option key="--total-runs" value="10"/>
+				<option key="--discretization" value="0.01"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10"/>
+				<option key="--runs-pr-state" value="10"/>
+				<option key="--max-imitation" value="10"/>
+				<plot title="Simulations (100)" xaxis="time" yaxis="value">
+					<series title="Car.Slow" type="l" color="0xff0000" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0101" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0202" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0303" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+0.0,1.0
+30.06349212955684,1.0
+30.06349212955684,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0505" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0606" encoding="csv">0.0,0.0
+0.0,1.0
+23.093693167902533,1.0
+23.093693167902533,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0707" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0808" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0909" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0a0a" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0b0b" encoding="csv">0.0,0.0
+0.0,1.0
+28.324230713769797,1.0
+28.324230713769797,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0d0d" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0e0e" encoding="csv">0.0,0.0
+0.0,1.0
+78.22717824019493,1.0
+78.22717824019493,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0f0f" encoding="csv">0.0,0.0
+0.0,1.0
+19.974999735131863,1.0
+19.974999735131863,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1010" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1111" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1212" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1313" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1414" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1616" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1717" encoding="csv">0.0,0.0
+0.0,1.0
+64.2217078479007,1.0
+64.2217078479007,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1818" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1919" encoding="csv">0.0,0.0
+0.0,1.0
+84.19104837812485,1.0
+84.19104837812485,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1a1a" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1b1b" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1c1c" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1e1e" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1f1f" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2020" encoding="csv">0.0,0.0
+0.0,1.0
+80.72726891841741,1.0
+80.72726891841741,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2121" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2222" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2323" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2424" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2626" encoding="csv">0.0,0.0
+0.0,1.0
+48.96579287014902,1.0
+48.96579287014902,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2727" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2828" encoding="csv">0.0,0.0
+0.0,1.0
+79.36070796567948,1.0
+79.36070796567948,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2929" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2a2a" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2b2b" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2c2c" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2d2d" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+0.0,1.0
+97.10911861620845,1.0
+97.10911861620845,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2f2f" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3030" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3131" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3232" encoding="csv">0.0,0.0
+0.0,1.0
+79.51436613220723,1.0
+79.51436613220723,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3333" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3434" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3535" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3737" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3838" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3939" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3a3a" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3b3b" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3c3c" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3d3d" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3f3f" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4040" encoding="csv">0.0,0.0
+0.0,1.0
+90.87675458285959,1.0
+90.87675458285959,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4141" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4242" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4343" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4444" encoding="csv">0.0,0.0
+0.0,1.0
+20.624015526846055,1.0
+20.624015526846055,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4545" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4646" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4848" encoding="csv">0.0,0.0
+0.0,1.0
+6.378805893473328,1.0
+6.378805893473328,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4949" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4a4a" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4b4b" encoding="csv">0.0,0.0
+0.0,1.0
+36.17407379206271,1.0
+36.17407379206271,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4c4c" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4d4d" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4e4e" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+0.0,1.0
+87.36781273037197,1.0
+87.36781273037197,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+0.0,1.0
+94.74809411913158,1.0
+94.74809411913158,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5050" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5151" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5252" encoding="csv">0.0,0.0
+0.0,1.0
+3.283789893612266,1.0
+3.283789893612266,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5353" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5454" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5555" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5656" encoding="csv">0.0,0.0
+0.0,1.0
+81.37884908355774,1.0
+81.37884908355774,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+0.0,1.0
+13.452500617131593,1.0
+13.452500617131593,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+0.0,1.0
+80.38902634289117,1.0
+80.38902634289117,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5858" encoding="csv">0.0,0.0
+200.0,0.0
+					</series>
+					<series title="Car.Medium - 4" type="l" color="0x80ff00" encoding="csv">0.0,-4.0
+0.0,-3.0
+36.45726418588311,-3.0
+36.45726418588311,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x80ff01" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x80ff02" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x81ff03" encoding="csv">0.0,-4.0
+0.0,-3.0
+41.43816740019248,-3.0
+41.43816740019248,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x81ff04" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x82ff04" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x82ff05" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x83ff06" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x83ff07" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x84ff08" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x84ff09" encoding="csv">0.0,-4.0
+0.0,-3.0
+18.19220909615979,-3.0
+18.19220909615979,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x84ff0a" encoding="csv">0.0,-4.0
+0.0,-3.0
+64.66962139820681,-3.0
+64.66962139820681,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x85ff0b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x85ff0c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x86ff0c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x86ff0d" encoding="csv">0.0,-4.0
+0.0,-3.0
+19.46807091822848,-3.0
+19.46807091822848,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x87ff0e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x87ff0f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x88ff10" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x88ff11" encoding="csv">0.0,-4.0
+0.0,-3.0
+39.020420261658735,-3.0
+39.020420261658735,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x88ff12" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x89ff13" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x89ff14" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8aff15" encoding="csv">0.0,-4.0
+0.0,-3.0
+2.445861259475351,-3.0
+2.445861259475351,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8aff15" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8bff16" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8bff17" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8cff18" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8cff19" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8cff1a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8dff1b" encoding="csv">0.0,-4.0
+0.0,-3.0
+62.464264580048635,-3.0
+62.464264580048635,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8dff1c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8eff1d" encoding="csv">0.0,-4.0
+0.0,-3.0
+65.67097877850757,-3.0
+65.67097877850757,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8eff1d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8fff1e" encoding="csv">0.0,-4.0
+0.0,-3.0
+68.79541777307169,-3.0
+68.79541777307169,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8fff1f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x90ff20" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x90ff21" encoding="csv">0.0,-4.0
+0.0,-3.0
+11.76354850176722,-3.0
+11.76354850176722,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x90ff22" encoding="csv">0.0,-4.0
+0.0,-3.0
+24.453818658366803,-3.0
+24.453818658366803,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x91ff23" encoding="csv">0.0,-4.0
+0.0,-3.0
+33.55011385399849,-3.0
+33.55011385399849,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x91ff24" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x92ff25" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x92ff25" encoding="csv">0.0,-4.0
+0.0,-3.0
+48.74017485417426,-3.0
+48.74017485417426,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x93ff26" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x93ff27" encoding="csv">0.0,-4.0
+0.0,-3.0
+43.12058770563454,-3.0
+43.12058770563454,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x94ff28" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x94ff29" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x94ff2a" encoding="csv">0.0,-4.0
+0.0,-3.0
+66.60906302742661,-3.0
+66.60906302742661,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x95ff2b" encoding="csv">0.0,-4.0
+0.0,-3.0
+2.6989077916368847,-3.0
+2.6989077916368847,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x95ff2c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x96ff2d" encoding="csv">0.0,-4.0
+0.0,-3.0
+32.55986579461024,-3.0
+32.55986579461024,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x96ff2e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x97ff2e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x97ff2f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x98ff30" encoding="csv">0.0,-4.0
+0.0,-3.0
+46.51131640421227,-3.0
+46.51131640421227,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x98ff31" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x98ff32" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x99ff33" encoding="csv">0.0,-4.0
+0.0,-3.0
+40.344603687990464,-3.0
+40.344603687990464,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x99ff34" encoding="csv">0.0,-4.0
+0.0,-3.0
+13.656109005678449,-3.0
+13.656109005678449,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9aff35" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9aff36" encoding="csv">0.0,-4.0
+0.0,-3.0
+52.78313760180028,-3.0
+52.78313760180028,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9bff36" encoding="csv">0.0,-4.0
+0.0,-3.0
+10.179552237968894,-3.0
+10.179552237968894,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9bff37" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9cff38" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9cff39" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9dff3a" encoding="csv">0.0,-4.0
+0.0,-3.0
+14.952798471786085,-3.0
+14.952798471786085,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9dff3b" encoding="csv">0.0,-4.0
+0.0,-3.0
+68.32395111210646,-3.0
+68.32395111210646,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9dff3c" encoding="csv">0.0,-4.0
+0.0,-3.0
+33.44729386037216,-3.0
+33.44729386037216,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9eff3d" encoding="csv">0.0,-4.0
+0.0,-3.0
+69.87350732553752,-3.0
+69.87350732553752,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9eff3e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9fff3e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9fff3f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa0ff40" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa0ff41" encoding="csv">0.0,-4.0
+0.0,-3.0
+36.99907872593031,-3.0
+36.99907872593031,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa1ff42" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa1ff43" encoding="csv">0.0,-4.0
+0.0,-3.0
+11.991251825820656,-3.0
+11.991251825820656,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa1ff44" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa2ff45" encoding="csv">0.0,-4.0
+0.0,-3.0
+13.495933965314183,-3.0
+13.495933965314183,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa2ff46" encoding="csv">0.0,-4.0
+0.0,-3.0
+6.800536070950331,-3.0
+6.800536070950331,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa3ff47" encoding="csv">0.0,-4.0
+0.0,-3.0
+16.505273715592924,-3.0
+16.505273715592924,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa3ff47" encoding="csv">0.0,-4.0
+0.0,-3.0
+9.000841132365169,-3.0
+9.000841132365169,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa4ff48" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa4ff49" encoding="csv">0.0,-4.0
+0.0,-3.0
+67.63359035598116,-3.0
+67.63359035598116,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa5ff4a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa5ff4b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa5ff4c" encoding="csv">0.0,-4.0
+0.0,-3.0
+53.050799951888635,-3.0
+53.050799951888635,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa6ff4d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa6ff4e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa7ff4f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa7ff4f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa8ff50" encoding="csv">0.0,-4.0
+0.0,-3.0
+23.68417288642377,-3.0
+23.68417288642377,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa8ff51" encoding="csv">0.0,-4.0
+0.0,-3.0
+29.35855089453981,-3.0
+29.35855089453981,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa9ff52" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa9ff53" encoding="csv">0.0,-4.0
+0.0,-3.0
+68.88346113497393,-3.0
+68.88346113497393,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa9ff54" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xaaff55" encoding="csv">0.0,-4.0
+0.0,-3.0
+61.010926812887206,-3.0
+61.010926812887206,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xaaff56" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xabff57" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xabff57" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xacff58" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="Car.Fast - 8" type="l" color="0x00ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x01ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+0.06586395902559163,-7.0
+0.06586395902559163,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x02ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+22.739356092642996,-7.0
+22.739356092642996,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x03ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x04ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+21.021996519993994,-7.0
+21.021996519993994,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x04ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x05ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+30.012747738510374,-7.0
+30.012747738510374,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x06ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x07ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+31.668148119933907,-7.0
+31.668148119933907,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x08ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+14.704261580482127,-7.0
+14.704261580482127,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x09ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0cffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+23.151833342853937,-7.0
+23.151833342853937,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0cffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+15.799304156098517,-7.0
+15.799304156098517,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x10ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+12.670778925530614,-7.0
+12.670778925530614,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x11ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x12ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+39.97030088212342,-7.0
+39.97030088212342,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x13ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+23.446278960909698,-7.0
+23.446278960909698,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x14ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+35.744479647837586,-7.0
+35.744479647837586,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x15ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x15ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+21.984094788786027,-7.0
+21.984094788786027,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x16ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+11.031804140657188,-7.0
+11.031804140657188,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x17ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x18ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+33.203768962994225,-7.0
+33.203768962994225,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x19ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1affff" encoding="csv">0.0,-8.0
+0.0,-7.0
+39.34873878024519,-7.0
+39.34873878024519,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1cffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+48.98865915602074,-7.0
+48.98865915602074,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1dffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+19.69660044414923,-7.0
+19.69660044414923,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1fffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+39.86620377982036,-7.0
+39.86620377982036,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x20ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x21ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x22ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x23ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x24ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+48.56093962443993,-7.0
+48.56093962443993,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x25ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+4.635328799486161,-7.0
+4.635328799486161,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x25ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x26ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x27ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x28ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x29ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+1.1322870966978373,-7.0
+1.1322870966978373,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2cffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+11.629771383013578,-7.0
+11.629771383013578,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2effff" encoding="csv">0.0,-8.0
+0.0,-7.0
+4.543652548454703,-7.0
+4.543652548454703,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2fffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+22.33665687963367,-7.0
+22.33665687963367,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x30ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x31ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+6.496048823464663,-7.0
+6.496048823464663,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x32ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x33ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x34ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x35ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+48.77596704754979,-7.0
+48.77596704754979,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x36ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x36ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x37ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+15.671761590056123,-7.0
+15.671761590056123,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x38ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+48.783874500077225,-7.0
+48.783874500077225,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x39ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+5.008837336208672,-7.0
+5.008837336208672,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3effff" encoding="csv">0.0,-8.0
+0.0,-7.0
+12.873505300376566,-7.0
+12.873505300376566,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3effff" encoding="csv">0.0,-8.0
+0.0,-7.0
+13.990341487806292,-7.0
+13.990341487806292,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3fffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+47.94467668980361,-7.0
+47.94467668980361,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x40ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x41ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x42ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+31.335857021622363,-7.0
+31.335857021622363,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x43ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x44ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x45ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x46ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x47ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x47ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x48ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x49ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4affff" encoding="csv">0.0,-8.0
+0.0,-7.0
+0.3943226300179959,-7.0
+0.3943226300179959,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4dffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+28.081479889806364,-7.0
+28.081479889806364,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4effff" encoding="csv">0.0,-8.0
+0.0,-7.0
+28.87606958393008,-7.0
+28.87606958393008,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x50ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x51ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x52ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x53ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x54ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+13.916197675280275,-7.0
+13.916197675280275,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x55ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x56ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x57ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x57ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x58ffff" encoding="csv">0.0,-8.0
+0.0,-7.0
+32.30326245538891,-7.0
+32.30326245538891,-8.0
+200.0,-8.0
+					</series>
+					<series title="Car.End - 12" type="l" color="0x8000ff" encoding="csv">0.0,-12.0
+36.45726418588311,-12.0
+36.45726418588311,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8001ff" encoding="csv">0.0,-12.0
+0.06586395902559163,-12.0
+0.06586395902559163,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8002ff" encoding="csv">0.0,-12.0
+22.739356092642996,-12.0
+22.739356092642996,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8103ff" encoding="csv">0.0,-12.0
+41.43816740019248,-12.0
+41.43816740019248,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8104ff" encoding="csv">0.0,-12.0
+21.021996519993994,-12.0
+21.021996519993994,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8204ff" encoding="csv">0.0,-12.0
+30.06349212955684,-12.0
+30.06349212955684,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8205ff" encoding="csv">0.0,-12.0
+30.012747738510374,-12.0
+30.012747738510374,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8306ff" encoding="csv">0.0,-12.0
+23.093693167902533,-12.0
+23.093693167902533,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8307ff" encoding="csv">0.0,-12.0
+31.668148119933907,-12.0
+31.668148119933907,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8408ff" encoding="csv">0.0,-12.0
+14.704261580482127,-12.0
+14.704261580482127,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8409ff" encoding="csv">0.0,-12.0
+18.19220909615979,-12.0
+18.19220909615979,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x840aff" encoding="csv">0.0,-12.0
+64.66962139820681,-12.0
+64.66962139820681,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x850bff" encoding="csv">0.0,-12.0
+28.324230713769797,-12.0
+28.324230713769797,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x850cff" encoding="csv">0.0,-12.0
+23.151833342853937,-12.0
+23.151833342853937,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x860cff" encoding="csv">0.0,-12.0
+15.799304156098517,-12.0
+15.799304156098517,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x860dff" encoding="csv">0.0,-12.0
+19.46807091822848,-12.0
+19.46807091822848,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x870eff" encoding="csv">0.0,-12.0
+78.22717824019493,-12.0
+78.22717824019493,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x870fff" encoding="csv">0.0,-12.0
+19.974999735131863,-12.0
+19.974999735131863,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8810ff" encoding="csv">0.0,-12.0
+12.670778925530614,-12.0
+12.670778925530614,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8811ff" encoding="csv">0.0,-12.0
+39.020420261658735,-12.0
+39.020420261658735,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8812ff" encoding="csv">0.0,-12.0
+39.97030088212342,-12.0
+39.97030088212342,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8913ff" encoding="csv">0.0,-12.0
+23.446278960909698,-12.0
+23.446278960909698,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8914ff" encoding="csv">0.0,-12.0
+35.744479647837586,-12.0
+35.744479647837586,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8a15ff" encoding="csv">0.0,-12.0
+2.445861259475351,-12.0
+2.445861259475351,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8a15ff" encoding="csv">0.0,-12.0
+21.984094788786027,-12.0
+21.984094788786027,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8b16ff" encoding="csv">0.0,-12.0
+11.031804140657188,-12.0
+11.031804140657188,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8b17ff" encoding="csv">0.0,-12.0
+64.2217078479007,-12.0
+64.2217078479007,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8c18ff" encoding="csv">0.0,-12.0
+33.203768962994225,-12.0
+33.203768962994225,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8c19ff" encoding="csv">0.0,-12.0
+84.19104837812485,-12.0
+84.19104837812485,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8c1aff" encoding="csv">0.0,-12.0
+39.34873878024519,-12.0
+39.34873878024519,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8d1bff" encoding="csv">0.0,-12.0
+62.464264580048635,-12.0
+62.464264580048635,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8d1cff" encoding="csv">0.0,-12.0
+48.98865915602074,-12.0
+48.98865915602074,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8e1dff" encoding="csv">0.0,-12.0
+65.67097877850757,-12.0
+65.67097877850757,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8e1dff" encoding="csv">0.0,-12.0
+19.69660044414923,-12.0
+19.69660044414923,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8f1eff" encoding="csv">0.0,-12.0
+68.79541777307169,-12.0
+68.79541777307169,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8f1fff" encoding="csv">0.0,-12.0
+39.86620377982036,-12.0
+39.86620377982036,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9020ff" encoding="csv">0.0,-12.0
+80.72726891841741,-12.0
+80.72726891841741,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9021ff" encoding="csv">0.0,-12.0
+11.76354850176722,-12.0
+11.76354850176722,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9022ff" encoding="csv">0.0,-12.0
+24.453818658366803,-12.0
+24.453818658366803,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9123ff" encoding="csv">0.0,-12.0
+33.55011385399849,-12.0
+33.55011385399849,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9124ff" encoding="csv">0.0,-12.0
+48.56093962443993,-12.0
+48.56093962443993,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9225ff" encoding="csv">0.0,-12.0
+4.635328799486161,-12.0
+4.635328799486161,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9225ff" encoding="csv">0.0,-12.0
+48.74017485417426,-12.0
+48.74017485417426,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9326ff" encoding="csv">0.0,-12.0
+48.96579287014902,-12.0
+48.96579287014902,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9327ff" encoding="csv">0.0,-12.0
+43.12058770563454,-12.0
+43.12058770563454,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9428ff" encoding="csv">0.0,-12.0
+79.36070796567948,-12.0
+79.36070796567948,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9429ff" encoding="csv">0.0,-12.0
+1.1322870966978373,-12.0
+1.1322870966978373,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x942aff" encoding="csv">0.0,-12.0
+66.60906302742661,-12.0
+66.60906302742661,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x952bff" encoding="csv">0.0,-12.0
+2.6989077916368847,-12.0
+2.6989077916368847,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x952cff" encoding="csv">0.0,-12.0
+11.629771383013578,-12.0
+11.629771383013578,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x962dff" encoding="csv">0.0,-12.0
+32.55986579461024,-12.0
+32.55986579461024,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x962eff" encoding="csv">0.0,-12.0
+4.543652548454703,-12.0
+4.543652548454703,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x972eff" encoding="csv">0.0,-12.0
+97.10911861620845,-12.0
+97.10911861620845,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x972fff" encoding="csv">0.0,-12.0
+22.33665687963367,-12.0
+22.33665687963367,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9830ff" encoding="csv">0.0,-12.0
+46.51131640421227,-12.0
+46.51131640421227,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9831ff" encoding="csv">0.0,-12.0
+6.496048823464663,-12.0
+6.496048823464663,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9832ff" encoding="csv">0.0,-12.0
+79.51436613220723,-12.0
+79.51436613220723,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9933ff" encoding="csv">0.0,-12.0
+40.344603687990464,-12.0
+40.344603687990464,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9934ff" encoding="csv">0.0,-12.0
+13.656109005678449,-12.0
+13.656109005678449,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9a35ff" encoding="csv">0.0,-12.0
+48.77596704754979,-12.0
+48.77596704754979,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9a36ff" encoding="csv">0.0,-12.0
+52.78313760180028,-12.0
+52.78313760180028,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9b36ff" encoding="csv">0.0,-12.0
+10.179552237968894,-12.0
+10.179552237968894,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9b37ff" encoding="csv">0.0,-12.0
+15.671761590056123,-12.0
+15.671761590056123,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9c38ff" encoding="csv">0.0,-12.0
+48.783874500077225,-12.0
+48.783874500077225,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9c39ff" encoding="csv">0.0,-12.0
+5.008837336208672,-12.0
+5.008837336208672,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9d3aff" encoding="csv">0.0,-12.0
+14.952798471786085,-12.0
+14.952798471786085,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9d3bff" encoding="csv">0.0,-12.0
+68.32395111210646,-12.0
+68.32395111210646,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9d3cff" encoding="csv">0.0,-12.0
+33.44729386037216,-12.0
+33.44729386037216,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9e3dff" encoding="csv">0.0,-12.0
+69.87350732553752,-12.0
+69.87350732553752,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9e3eff" encoding="csv">0.0,-12.0
+12.873505300376566,-12.0
+12.873505300376566,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9f3eff" encoding="csv">0.0,-12.0
+13.990341487806292,-12.0
+13.990341487806292,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9f3fff" encoding="csv">0.0,-12.0
+47.94467668980361,-12.0
+47.94467668980361,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa040ff" encoding="csv">0.0,-12.0
+90.87675458285959,-12.0
+90.87675458285959,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa041ff" encoding="csv">0.0,-12.0
+36.99907872593031,-12.0
+36.99907872593031,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa142ff" encoding="csv">0.0,-12.0
+31.335857021622363,-12.0
+31.335857021622363,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa143ff" encoding="csv">0.0,-12.0
+11.991251825820656,-12.0
+11.991251825820656,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa144ff" encoding="csv">0.0,-12.0
+20.624015526846055,-12.0
+20.624015526846055,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa245ff" encoding="csv">0.0,-12.0
+13.495933965314183,-12.0
+13.495933965314183,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa246ff" encoding="csv">0.0,-12.0
+6.800536070950331,-12.0
+6.800536070950331,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa347ff" encoding="csv">0.0,-12.0
+16.505273715592924,-12.0
+16.505273715592924,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa347ff" encoding="csv">0.0,-12.0
+9.000841132365169,-12.0
+9.000841132365169,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa448ff" encoding="csv">0.0,-12.0
+6.378805893473328,-12.0
+6.378805893473328,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa449ff" encoding="csv">0.0,-12.0
+67.63359035598116,-12.0
+67.63359035598116,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa54aff" encoding="csv">0.0,-12.0
+0.3943226300179959,-12.0
+0.3943226300179959,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa54bff" encoding="csv">0.0,-12.0
+36.17407379206271,-12.0
+36.17407379206271,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa54cff" encoding="csv">0.0,-12.0
+53.050799951888635,-12.0
+53.050799951888635,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa64dff" encoding="csv">0.0,-12.0
+28.081479889806364,-12.0
+28.081479889806364,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa64eff" encoding="csv">0.0,-12.0
+28.87606958393008,-12.0
+28.87606958393008,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa74fff" encoding="csv">0.0,-12.0
+87.36781273037197,-12.0
+87.36781273037197,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa74fff" encoding="csv">0.0,-12.0
+94.74809411913158,-12.0
+94.74809411913158,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa850ff" encoding="csv">0.0,-12.0
+23.68417288642377,-12.0
+23.68417288642377,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa851ff" encoding="csv">0.0,-12.0
+29.35855089453981,-12.0
+29.35855089453981,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa952ff" encoding="csv">0.0,-12.0
+3.283789893612266,-12.0
+3.283789893612266,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa953ff" encoding="csv">0.0,-12.0
+68.88346113497393,-12.0
+68.88346113497393,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa954ff" encoding="csv">0.0,-12.0
+13.916197675280275,-12.0
+13.916197675280275,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xaa55ff" encoding="csv">0.0,-12.0
+61.010926812887206,-12.0
+61.010926812887206,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xaa56ff" encoding="csv">0.0,-12.0
+81.37884908355774,-12.0
+81.37884908355774,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xab57ff" encoding="csv">0.0,-12.0
+13.452500617131593,-12.0
+13.452500617131593,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xab57ff" encoding="csv">0.0,-12.0
+80.38902634289117,-12.0
+80.38902634289117,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xac58ff" encoding="csv">0.0,-12.0
+32.30326245538891,-12.0
+32.30326245538891,-11.0
+200.0,-11.0
+					</series>
+					<comment/>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula>E[&lt;=200;10000](max:fc)</formula>
+			<comment/>
+			<result outcome="success" type="quantity" value="203.686 ± 2.46259 (95% CI)" timestamp="2023-02-28 09:03:34 +0100">
+				<option key="--total-runs" value="10"/>
+				<option key="--discretization" value="0.01"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10"/>
+				<option key="--runs-pr-state" value="10"/>
+				<option key="--max-imitation" value="10"/>
+				<details>203.686 ± 2.46259 (95% CI)</details>
+				<plot title="Probability Density Distribution" xaxis="max: fc" yaxis="probability density">
+					<series title="density" type="b(4.999807)" color="0x0000ff" encoding="csv">0.014015822671353819,0.0026801034222033305
+5.013822878245266,0.0023800918450910175
+10.013629933819178,0.0023000887578610674
+15.01343698939309,0.0024200933887059926
+20.013244044967003,0.0027801072812407685
+25.013051100540913,0.0020800802679787045
+30.012858156114827,0.0023400903014760424
+35.01266521168874,0.0027601065094332807
+40.01247226726265,0.0024000926168985053
+45.01227932283656,0.0024000926168985053
+50.01208637841047,0.002920112683893181
+55.01189343398439,0.0026001003349733804
+60.0117004895583,0.0020800802679787045
+65.01150754513222,0.0027001041940108183
+70.01131460070613,0.0024800957041284555
+75.01112165628004,0.00228008798605358
+80.01092871185395,0.002800108053048256
+85.01073576742786,0.002660102650395843
+90.01054282300177,0.002500096475935943
+95.01034987857568,0.0024200933887059926
+100.01015693414959,0.002580099563165893
+105.00996398972352,0.002880111140278206
+110.00977104529743,0.0024000926168985053
+115.00957810087134,0.0025600987913584057
+120.00938515644525,0.0027801072812407685
+125.00919221201916,0.0026001003349733804
+130.00899926759308,0.003020116542930619
+135.008806323167,0.002900111912085694
+140.0086133787409,0.002580099563165893
+145.00842043431481,0.0028601103684707187
+150.00822748988872,0.0024400941605134804
+155.00803454546264,0.0028201088248557436
+160.00784160103655,0.0026801034222033305
+165.00764865661046,0.0026401018785883554
+170.00745571218437,0.0027401057376257934
+175.00726276775828,0.0024400941605134804
+180.0070698233322,0.0026001003349733804
+185.0068768789061,0.0026001003349733804
+190.00668393448,0.0022600872142460923
+195.00649099005392,0.002540098019550918
+200.00629804562783,0.0027201049658183056
+205.00610510120177,0.0027801072812407685
+210.00591215677568,0.0020600794961712168
+215.0057192123496,0.0024600949323209677
+220.0055262679235,0.0024600949323209677
+225.0053333234974,0.002660102650395843
+230.00514037907132,0.002880111140278206
+235.00494743464523,0.002580099563165893
+240.00475449021914,0.002800108053048256
+245.00456154579305,0.002980114999315644
+250.00436860136696,0.0026401018785883554
+255.00417565694087,0.002620101106780868
+260.0039827125148,0.0027201049658183056
+265.0037897680887,0.002100081039786192
+270.00359682366263,0.00236009107328353
+275.00340387923654,0.0024400941605134804
+280.00321093481045,0.002620101106780868
+285.00301799038436,0.0024200933887059926
+290.0028250459583,0.0024000926168985053
+295.0026321015322,0.0026801034222033305
+300.0024391571061,0.0016000617445990034
+305.00224621268,0.0013200509392941777
+310.0020532682539,0.0012000463084492527
+315.0018603238278,0.0012600486238717153
+320.00166737940174,0.0012600486238717153
+325.00147443497565,0.0013000501674866902
+330.00128149054956,0.0017200663754439287
+335.00108854612347,0.0017000656036364411
+340.0008956016974,0.0012800493956792028
+345.0007026572713,0.0015400594291765407
+350.0005097128452,0.0018000694626738789
+355.0003167684191,0.0013200509392941777
+360.000123823993,0.0014200547983316155
+364.99993087956693,0.001620062516406491
+369.99973793514084,0.0016400632882139785
+374.99954499071475,0.001620062516406491
+379.99935204628866,0.0013800532547166404
+384.9991591018626,0.0020600794961712168
+389.9989661574365,0.0015200586573690532
+394.9987732130104,0.001440055570139103
+399.9985802685843,0.0013600524829091528
+404.9983873241583,0.001480057113754078
+409.9981943797322,0.0013600524829091528
+414.9980014353061,0.0013400517111016653
+419.99780849088,7.00027013262064E-4
+424.9976155464539,6.400246978396014E-4
+429.9974226020278,5.000192951871886E-4
+434.99722965760174,6.200239260321139E-4
+439.99703671317565,6.800262414545764E-4
+444.99684376874956,9.000347313369394E-4
+449.99665082432347,7.800301004920141E-4
+454.9964578798974,6.800262414545764E-4
+459.9962649354713,6.400246978396014E-4
+464.9960719910452,3.0001157711231316E-4
+469.9958790466191,6.000231542246263E-4
+474.995686102193,5.200200669946761E-4
+479.99549315776693,5.800223824171388E-4
+484.99530021334084,6.400246978396014E-4
+489.99510726891475,7.800301004920141E-4
+494.99491432448866,6.200239260321139E-4
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">203.68579751518698,0.0
+203.68579751518698,0.003020116542930619
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=4.9998, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.014016, 499.99]
+Mean estimate of displayed sample: 203.69 ± 2.4626 (95% CI)</comment>
+				</plot>
+				<plot title="Probability Distribution" xaxis="max: fc" yaxis="probability">
+					<series title="probability" type="b(4.999807)" color="0x0000ff" encoding="csv">0.014015822671353819,0.0134
+5.013822878245266,0.0119
+10.013629933819178,0.0115
+15.01343698939309,0.0121
+20.013244044967003,0.0139
+25.013051100540913,0.0104
+30.012858156114827,0.0117
+35.01266521168874,0.0138
+40.01247226726265,0.012
+45.01227932283656,0.012
+50.01208637841047,0.0146
+55.01189343398439,0.013
+60.0117004895583,0.0104
+65.01150754513222,0.0135
+70.01131460070613,0.0124
+75.01112165628004,0.0114
+80.01092871185395,0.014
+85.01073576742786,0.0133
+90.01054282300177,0.0125
+95.01034987857568,0.0121
+100.01015693414959,0.0129
+105.00996398972352,0.0144
+110.00977104529743,0.012
+115.00957810087134,0.0128
+120.00938515644525,0.0139
+125.00919221201916,0.013
+130.00899926759308,0.0151
+135.008806323167,0.0145
+140.0086133787409,0.0129
+145.00842043431481,0.0143
+150.00822748988872,0.0122
+155.00803454546264,0.0141
+160.00784160103655,0.0134
+165.00764865661046,0.0132
+170.00745571218437,0.0137
+175.00726276775828,0.0122
+180.0070698233322,0.013
+185.0068768789061,0.013
+190.00668393448,0.0113
+195.00649099005392,0.0127
+200.00629804562783,0.0136
+205.00610510120177,0.0139
+210.00591215677568,0.0103
+215.0057192123496,0.0123
+220.0055262679235,0.0123
+225.0053333234974,0.0133
+230.00514037907132,0.0144
+235.00494743464523,0.0129
+240.00475449021914,0.014
+245.00456154579305,0.0149
+250.00436860136696,0.0132
+255.00417565694087,0.0131
+260.0039827125148,0.0136
+265.0037897680887,0.0105
+270.00359682366263,0.0118
+275.00340387923654,0.0122
+280.00321093481045,0.0131
+285.00301799038436,0.0121
+290.0028250459583,0.012
+295.0026321015322,0.0134
+300.0024391571061,0.008
+305.00224621268,0.0066
+310.0020532682539,0.006
+315.0018603238278,0.0063
+320.00166737940174,0.0063
+325.00147443497565,0.0065
+330.00128149054956,0.0086
+335.00108854612347,0.0085
+340.0008956016974,0.0064
+345.0007026572713,0.0077
+350.0005097128452,0.009
+355.0003167684191,0.0066
+360.000123823993,0.0071
+364.99993087956693,0.0081
+369.99973793514084,0.0082
+374.99954499071475,0.0081
+379.99935204628866,0.0069
+384.9991591018626,0.0103
+389.9989661574365,0.0076
+394.9987732130104,0.0072
+399.9985802685843,0.0068
+404.9983873241583,0.0074
+409.9981943797322,0.0068
+414.9980014353061,0.0067
+419.99780849088,0.0035
+424.9976155464539,0.0032
+429.9974226020278,0.0025
+434.99722965760174,0.0031
+439.99703671317565,0.0034
+444.99684376874956,0.0045
+449.99665082432347,0.0039
+454.9964578798974,0.0034
+459.9962649354713,0.0032
+464.9960719910452,0.0015
+469.9958790466191,0.003
+474.995686102193,0.0026
+479.99549315776693,0.0029
+484.99530021334084,0.0032
+489.99510726891475,0.0039
+494.99491432448866,0.0031
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">203.68579751518698,0.0
+203.68579751518698,0.0151
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=4.9998, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.014016, 499.99]
+Mean estimate of displayed sample: 203.69 ± 2.4626 (95% CI)</comment>
+				</plot>
+				<plot title="Cumulative Probability Distribution" xaxis="max: fc" yaxis="probability">
+					<series title="cumulative" type="l" color="0x000000" encoding="csv">0.014015822671353819,0.0
+5.013822878245266,0.0134
+10.013629933819178,0.0253
+15.01343698939309,0.0368
+20.013244044967003,0.0489
+25.013051100540913,0.0628
+30.012858156114827,0.0732
+35.01266521168874,0.0849
+40.01247226726265,0.0987
+45.01227932283656,0.1107
+50.01208637841047,0.1227
+55.01189343398439,0.1373
+60.0117004895583,0.1503
+65.01150754513222,0.1607
+70.01131460070613,0.1742
+75.01112165628004,0.1866
+80.01092871185395,0.198
+85.01073576742786,0.212
+90.01054282300177,0.2253
+95.01034987857568,0.2378
+100.01015693414959,0.2499
+105.00996398972352,0.2628
+110.00977104529743,0.2772
+115.00957810087134,0.2892
+120.00938515644525,0.302
+125.00919221201916,0.3159
+130.00899926759308,0.3289
+135.008806323167,0.344
+140.0086133787409,0.3585
+145.00842043431481,0.3714
+150.00822748988872,0.3857
+155.00803454546264,0.3979
+160.00784160103655,0.412
+165.00764865661046,0.4254
+170.00745571218437,0.4386
+175.00726276775828,0.4523
+180.0070698233322,0.4645
+185.0068768789061,0.4775
+190.00668393448,0.4905
+195.00649099005392,0.5018
+200.00629804562783,0.5145
+205.00610510120177,0.5281
+210.00591215677568,0.542
+215.0057192123496,0.5523
+220.0055262679235,0.5646
+225.0053333234974,0.5769
+230.00514037907132,0.5902
+235.00494743464523,0.6046
+240.00475449021914,0.6175
+245.00456154579305,0.6315
+250.00436860136696,0.6464
+255.00417565694087,0.6596
+260.0039827125148,0.6727
+265.0037897680887,0.6863
+270.00359682366263,0.6968
+275.00340387923654,0.7086
+280.00321093481045,0.7208
+285.00301799038436,0.7339
+290.0028250459583,0.746
+295.0026321015322,0.758
+300.0024391571061,0.7714
+305.00224621268,0.7794
+310.0020532682539,0.786
+315.0018603238278,0.792
+320.00166737940174,0.7983
+325.00147443497565,0.8046
+330.00128149054956,0.8111
+335.00108854612347,0.8197
+340.0008956016974,0.8282
+345.0007026572713,0.8346
+350.0005097128452,0.8423
+355.0003167684191,0.8513
+360.000123823993,0.8579
+364.99993087956693,0.865
+369.99973793514084,0.8731
+374.99954499071475,0.8813
+379.99935204628866,0.8894
+384.9991591018626,0.8963
+389.9989661574365,0.9066
+394.9987732130104,0.9142
+399.9985802685843,0.9214
+404.9983873241583,0.9282
+409.9981943797322,0.9356
+414.9980014353061,0.9424
+419.99780849088,0.9491
+424.9976155464539,0.9526
+429.9974226020278,0.9558
+434.99722965760174,0.9583
+439.99703671317565,0.9614
+444.99684376874956,0.9648
+449.99665082432347,0.9693
+454.9964578798974,0.9732
+459.9962649354713,0.9766
+464.9960719910452,0.9798
+469.9958790466191,0.9813
+474.995686102193,0.9843
+479.99549315776693,0.9869
+484.99530021334084,0.9898
+489.99510726891475,0.993
+494.99491432448866,0.9969
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">203.68579751518698,0.0
+203.68579751518698,1.0
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=4.9998, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.014016, 499.99]
+Mean estimate of displayed sample: 203.69 ± 2.4626 (95% CI)</comment>
+				</plot>
+				<plot title="Cumulative Probability Confidence Intervals" xaxis="max: fc" yaxis="probability">
+					<series title="upper limit" type="k" color="0x0000dd" encoding="csv">0.014015822671353819,3.688199146187623E-4
+5.013822878245266,0.01585080751264414
+10.013629933819178,0.028569568273258225
+15.01343698939309,0.04067745751150909
+20.013244044967003,0.053310090859184214
+25.013051100540913,0.06773361719700345
+30.012858156114827,0.07848037545140626
+35.01266521168874,0.09053475058579462
+40.01247226726265,0.10471317348976789
+45.01227932283656,0.11701331325589716
+50.01208637841047,0.12929056289890387
+55.01189343398439,0.14420113119433525
+60.0117004895583,0.1574559572412204
+65.01150754513222,0.1680466508784487
+70.01131460070613,0.18177834155163242
+75.01112165628004,0.19437668739235456
+80.01092871185395,0.205947769562571
+85.01073576742786,0.22014416595805777
+90.01054282300177,0.2336176939112166
+95.01034987857568,0.2462699329825952
+100.01015693414959,0.25850784375737107
+105.00996398972352,0.2715451470494219
+110.00977104529743,0.2860871409177505
+115.00957810087134,0.2981967915375652
+120.00938515644525,0.3111054149947193
+125.00919221201916,0.32511398828877447
+130.00899926759308,0.3382069973472313
+135.008806323167,0.3534050228736864
+140.0086133787409,0.36798934028990704
+145.00842043431481,0.380956494673591
+150.00822748988872,0.39532249659007884
+155.00803454546264,0.4075719317797747
+160.00784160103655,0.42172132530536144
+165.00764865661046,0.43516069385177775
+170.00745571218437,0.4483923568990457
+175.00726276775828,0.4621178313391233
+180.0070698233322,0.4743342368251746
+185.0068768789061,0.4873452498230713
+190.00668393448,0.5003496185911661
+195.00649099005392,0.5116480315049602
+200.00629804562783,0.524340274263214
+205.00610510120177,0.5379249481519842
+210.00591215677568,0.5518017564272092
+215.0057192123496,0.5620796369484524
+220.0055262679235,0.5743476815700308
+225.0053333234974,0.5866096443720062
+230.00514037907132,0.5998615954072293
+235.00494743464523,0.6142013531552064
+240.00475449021914,0.6270400089945262
+245.00456154579305,0.6409653912686316
+250.00436860136696,0.6557765729065743
+255.00417565694087,0.6688895799624062
+260.0039827125148,0.6818953117748469
+265.0037897680887,0.6953888295640731
+270.00359682366263,0.7058004285306889
+275.00340387923654,0.7174944348554251
+280.00321093481045,0.7295771981429745
+285.00301799038436,0.7425423071236215
+290.0028250459583,0.7545090642859335
+295.0026321015322,0.7663683304079741
+300.0024391571061,0.7796005374073047
+305.00224621268,0.7874947427870032
+310.0020532682539,0.7940041578687107
+315.0018603238278,0.7999191255016777
+320.00166737940174,0.8061270003049571
+325.00147443497565,0.8123318646958994
+330.00128149054956,0.8187304372259837
+335.00108854612347,0.827190911575036
+340.0008956016974,0.8355467390731851
+345.0007026572713,0.8418338518869248
+350.0005097128452,0.8493928297752844
+355.0003167684191,0.8582203617545213
+360.000123823993,0.8646883178982271
+364.99993087956693,0.8716406604561117
+369.99973793514084,0.8795646172443934
+374.99954499071475,0.8875775087585971
+379.99935204628866,0.8954831130541696
+384.9991591018626,0.9022093261447656
+389.9989661574365,0.9122343314424232
+394.9987732130104,0.9196180351314636
+399.9985802685843,0.9266012380201751
+404.9983873241583,0.9331845175227215
+409.9981943797322,0.9403336083945361
+414.9980014353061,0.9468870581463414
+419.99780849088,0.9533265513191795
+424.9976155464539,0.9566824417534447
+429.9974226020278,0.9597452164055992
+434.99722965760174,0.9621340123021306
+439.99703671317565,0.9650907486366185
+444.99684376874956,0.9683259988343426
+449.99665082432347,0.9725937558742807
+454.9964578798974,0.976276893696113
+459.9962649354713,0.9794734376927587
+464.9960719910452,0.9824669305980995
+469.9958790466191,0.9838641442917102
+474.995686102193,0.9866446399043853
+479.99549315776693,0.9890358615177594
+484.99530021334084,0.9916756800319343
+489.99510726891475,0.9945392100169284
+494.99491432448866,0.9978927581610741
+					</series>
+					<series title="lower limit" type="k" color="0xdd0000" encoding="csv">0.014015822671353819,0.0
+5.013822878245266,0.011239008887585427
+10.013629933819178,0.022311045264484363
+15.01343698939309,0.03319541610155611
+20.013244044967003,0.044755067245831545
+25.013051100540913,0.058122935012787126
+30.012858156114827,0.06816984034725478
+35.01266521168874,0.07950840353658575
+40.01247226726265,0.09292171416275226
+45.01227932283656,0.10461442544161034
+50.01208637841047,0.11633005385707045
+55.01189343398439,0.13061084829802466
+60.0117004895583,0.14334835147789046
+65.01150754513222,0.1535515320505177
+70.01131460070613,0.16681190141824262
+75.01112165628004,0.17900627237852412
+80.01092871185395,0.19022850131871497
+85.01073576742786,0.20402389822350372
+90.01054282300177,0.21714258062817499
+95.01034987857568,0.22948302556822822
+100.01015693414959,0.24143803700062577
+105.00996398972352,0.254193191826462
+110.00977104529743,0.2684427832183997
+115.00957810087134,0.28032612321019085
+120.00938515644525,0.2930100256182566
+125.00919221201916,0.3067933385048911
+130.00899926759308,0.319692743156673
+135.008806323167,0.33468590816645016
+140.0086133787409,0.34909313335958037
+145.00842043431481,0.36191845626424074
+150.00822748988872,0.37614411659979113
+155.00803454546264,0.38828756908319684
+160.00784160103655,0.4023299565512429
+165.00764865661046,0.4156827778577048
+170.00745571218437,0.42884342188172087
+175.00726276775828,0.44250996366250245
+180.0070698233322,0.45468644889850185
+185.0068768789061,0.46766786071394867
+190.00668393448,0.4806559169380548
+195.00649099005392,0.4919509196591451
+200.00629804562783,0.5046512767575606
+205.00610510120177,0.5182586781817091
+210.00591215677568,0.5321737701558529
+215.0057192123496,0.5424898874191739
+220.0055262679235,0.5548146747491306
+225.0053333234974,0.5671455434217082
+230.00514037907132,0.5804858404005225
+235.00494743464523,0.5949376886059939
+240.00475449021914,0.6078915121416099
+245.00456154579305,0.6219579667506074
+250.00436860136696,0.6369380956337831
+255.00417565694087,0.650217388935303
+260.0039827125148,0.6634040141284554
+265.0037897680887,0.6771025596085756
+270.00359682366263,0.6876848314328093
+275.00340387923654,0.699583935192103
+280.00321093481045,0.7118940461250638
+285.00301799038436,0.7251212827397656
+290.0028250459583,0.7373474523961113
+295.0026321015322,0.7494811682234439
+300.0024391571061,0.7630411199245665
+305.00224621268,0.7711422306254782
+310.0020532682539,0.7778289497161962
+315.0018603238278,0.7839104663384092
+320.00166737940174,0.7902988985027628
+325.00147443497565,0.7966903394193071
+330.00128149054956,0.8032879530173389
+335.00108854612347,0.8120224293849306
+340.0008956016974,0.8206616072799247
+345.0007026572713,0.8271707308622923
+350.0005097128452,0.8350072211221786
+355.0003167684191,0.8441743862969598
+360.000123823993,0.8509025368346289
+364.99993087956693,0.8581460011057949
+369.99973793514084,0.8664172534851378
+374.99954499071475,0.8747995030864208
+379.99935204628866,0.8830890887953627
+384.9991591018626,0.8901587687073751
+389.9989661574365,0.9007276126821541
+394.9987732130104,0.9085393516819522
+399.9985802685843,0.9159518127371477
+404.9983873241583,0.9229644174417714
+409.9981943797322,0.9306108188004878
+414.9980014353061,0.9376531925888651
+419.99780849088,0.9446095418878302
+424.9976155464539,0.9482514580212426
+429.9974226020278,0.9515866618136967
+434.99722965760174,0.9541962739414428
+439.99703671317565,0.9574375453282491
+444.99684376874956,0.9610000820654261
+449.99665082432347,0.9657293380701486
+454.9964578798974,0.9698435395247033
+459.9962649354713,0.9734445995151042
+464.9960719910452,0.9768487597452218
+469.9958790466191,0.9784504047033517
+474.995686102193,0.9816675166698012
+479.99549315776693,0.9844740528077613
+484.99530021334084,0.9876314291579217
+489.99510726891475,0.9911640844824191
+494.99491432448866,0.9956026588923559
+					</series>
+					<series title="cumulative" type="l" color="0x000000" encoding="csv">0.014015822671353819,0.0
+5.013822878245266,0.0134
+10.013629933819178,0.0253
+15.01343698939309,0.0368
+20.013244044967003,0.0489
+25.013051100540913,0.0628
+30.012858156114827,0.0732
+35.01266521168874,0.0849
+40.01247226726265,0.0987
+45.01227932283656,0.1107
+50.01208637841047,0.1227
+55.01189343398439,0.1373
+60.0117004895583,0.1503
+65.01150754513222,0.1607
+70.01131460070613,0.1742
+75.01112165628004,0.1866
+80.01092871185395,0.198
+85.01073576742786,0.212
+90.01054282300177,0.2253
+95.01034987857568,0.2378
+100.01015693414959,0.2499
+105.00996398972352,0.2628
+110.00977104529743,0.2772
+115.00957810087134,0.2892
+120.00938515644525,0.302
+125.00919221201916,0.3159
+130.00899926759308,0.3289
+135.008806323167,0.344
+140.0086133787409,0.3585
+145.00842043431481,0.3714
+150.00822748988872,0.3857
+155.00803454546264,0.3979
+160.00784160103655,0.412
+165.00764865661046,0.4254
+170.00745571218437,0.4386
+175.00726276775828,0.4523
+180.0070698233322,0.4645
+185.0068768789061,0.4775
+190.00668393448,0.4905
+195.00649099005392,0.5018
+200.00629804562783,0.5145
+205.00610510120177,0.5281
+210.00591215677568,0.542
+215.0057192123496,0.5523
+220.0055262679235,0.5646
+225.0053333234974,0.5769
+230.00514037907132,0.5902
+235.00494743464523,0.6046
+240.00475449021914,0.6175
+245.00456154579305,0.6315
+250.00436860136696,0.6464
+255.00417565694087,0.6596
+260.0039827125148,0.6727
+265.0037897680887,0.6863
+270.00359682366263,0.6968
+275.00340387923654,0.7086
+280.00321093481045,0.7208
+285.00301799038436,0.7339
+290.0028250459583,0.746
+295.0026321015322,0.758
+300.0024391571061,0.7714
+305.00224621268,0.7794
+310.0020532682539,0.786
+315.0018603238278,0.792
+320.00166737940174,0.7983
+325.00147443497565,0.8046
+330.00128149054956,0.8111
+335.00108854612347,0.8197
+340.0008956016974,0.8282
+345.0007026572713,0.8346
+350.0005097128452,0.8423
+355.0003167684191,0.8513
+360.000123823993,0.8579
+364.99993087956693,0.865
+369.99973793514084,0.8731
+374.99954499071475,0.8813
+379.99935204628866,0.8894
+384.9991591018626,0.8963
+389.9989661574365,0.9066
+394.9987732130104,0.9142
+399.9985802685843,0.9214
+404.9983873241583,0.9282
+409.9981943797322,0.9356
+414.9980014353061,0.9424
+419.99780849088,0.9491
+424.9976155464539,0.9526
+429.9974226020278,0.9558
+434.99722965760174,0.9583
+439.99703671317565,0.9614
+444.99684376874956,0.9648
+449.99665082432347,0.9693
+454.9964578798974,0.9732
+459.9962649354713,0.9766
+464.9960719910452,0.9798
+469.9958790466191,0.9813
+474.995686102193,0.9843
+479.99549315776693,0.9869
+484.99530021334084,0.9898
+489.99510726891475,0.993
+494.99491432448866,0.9969
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">203.68579751518698,0.0
+203.68579751518698,1.0
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=4.9998, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.014016, 499.99]
+Mean estimate of displayed sample: 203.69 ± 2.4626 (95% CI)</comment>
+				</plot>
+				<plot title="Frequency Histogram" xaxis="max: fc" yaxis="count">
+					<series title="count" type="b(4.999807)" color="0x0000ff" encoding="csv">0.014015822671353819,134.0
+5.013822878245266,119.0
+10.013629933819178,115.0
+15.01343698939309,121.0
+20.013244044967003,139.0
+25.013051100540913,104.0
+30.012858156114827,117.0
+35.01266521168874,138.0
+40.01247226726265,120.0
+45.01227932283656,120.0
+50.01208637841047,146.0
+55.01189343398439,130.0
+60.0117004895583,104.0
+65.01150754513222,135.0
+70.01131460070613,124.0
+75.01112165628004,114.0
+80.01092871185395,140.0
+85.01073576742786,133.0
+90.01054282300177,125.0
+95.01034987857568,121.0
+100.01015693414959,129.0
+105.00996398972352,144.0
+110.00977104529743,120.0
+115.00957810087134,128.0
+120.00938515644525,139.0
+125.00919221201916,130.0
+130.00899926759308,151.0
+135.008806323167,145.0
+140.0086133787409,129.0
+145.00842043431481,143.0
+150.00822748988872,122.0
+155.00803454546264,141.0
+160.00784160103655,134.0
+165.00764865661046,132.0
+170.00745571218437,137.0
+175.00726276775828,122.0
+180.0070698233322,130.0
+185.0068768789061,130.0
+190.00668393448,113.0
+195.00649099005392,127.0
+200.00629804562783,136.0
+205.00610510120177,139.0
+210.00591215677568,103.0
+215.0057192123496,123.0
+220.0055262679235,123.0
+225.0053333234974,133.0
+230.00514037907132,144.0
+235.00494743464523,129.0
+240.00475449021914,140.0
+245.00456154579305,149.0
+250.00436860136696,132.0
+255.00417565694087,131.0
+260.0039827125148,136.0
+265.0037897680887,105.0
+270.00359682366263,118.0
+275.00340387923654,122.0
+280.00321093481045,131.0
+285.00301799038436,121.0
+290.0028250459583,120.0
+295.0026321015322,134.0
+300.0024391571061,80.0
+305.00224621268,66.0
+310.0020532682539,60.0
+315.0018603238278,63.0
+320.00166737940174,63.0
+325.00147443497565,65.0
+330.00128149054956,86.0
+335.00108854612347,85.0
+340.0008956016974,64.0
+345.0007026572713,77.0
+350.0005097128452,90.0
+355.0003167684191,66.0
+360.000123823993,71.0
+364.99993087956693,81.0
+369.99973793514084,82.0
+374.99954499071475,81.0
+379.99935204628866,69.0
+384.9991591018626,103.0
+389.9989661574365,76.0
+394.9987732130104,72.0
+399.9985802685843,68.0
+404.9983873241583,74.0
+409.9981943797322,68.0
+414.9980014353061,67.0
+419.99780849088,35.0
+424.9976155464539,32.0
+429.9974226020278,25.0
+434.99722965760174,31.0
+439.99703671317565,34.0
+444.99684376874956,45.0
+449.99665082432347,39.0
+454.9964578798974,34.0
+459.9962649354713,32.0
+464.9960719910452,15.0
+469.9958790466191,30.0
+474.995686102193,26.0
+479.99549315776693,29.0
+484.99530021334084,32.0
+489.99510726891475,39.0
+494.99491432448866,31.0
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">203.68579751518698,0.0
+203.68579751518698,151.0
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=4.9998, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.014016, 499.99]
+Mean estimate of displayed sample: 203.69 ± 2.4626 (95% CI)</comment>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+		<query>
+			<formula>// Optimal control </formula>
+			<comment/>
+		</query>
+		<query>
+			<formula>strategy opt = minE(fc) [&lt;=200]:&lt;&gt;Car.End</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2023-02-28 09:53:12 +0100">
+				<option key="--total-runs" value="10000"/>
+				<option key="--discretization" value="0.1"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10000"/>
+				<option key="--runs-pr-state" value="10000"/>
+				<option key="--max-imitation" value="10"/>
+			</result>
+		</query>
+		<query>
+			<formula>simulate [&lt;=200;100] {fc} under opt</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2023-02-28 09:53:12 +0100">
+				<option key="--total-runs" value="10000"/>
+				<option key="--discretization" value="0.1"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10000"/>
+				<option key="--runs-pr-state" value="10000"/>
+				<option key="--max-imitation" value="10"/>
+				<plot title="Simulations (100)" xaxis="time" yaxis="value">
+					<series title="fc" type="l" color="0xff0000" encoding="csv">0.0,0.0
+87.60001703631134,262.80005110893404
+200.0,262.80005110893404
+					</series>
+					<series title="" type="l" color="0xff0101" encoding="csv">0.0,0.0
+17.39324221853167,52.17972665559502
+200.0,52.17972665559502
+					</series>
+					<series title="" type="l" color="0xff0202" encoding="csv">0.0,0.0
+25.746231712400917,77.23869513720275
+200.0,77.23869513720275
+					</series>
+					<series title="" type="l" color="0xff0303" encoding="csv">0.0,0.0
+98.96589301060887,296.8976790318266
+200.0,296.8976790318266
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+12.403837149031462,37.21151144709439
+200.0,37.21151144709439
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+68.04481078870596,204.1344323661179
+200.0,204.1344323661179
+					</series>
+					<series title="" type="l" color="0xff0505" encoding="csv">0.0,0.0
+22.25338062271476,66.76014186814429
+200.0,66.76014186814429
+					</series>
+					<series title="" type="l" color="0xff0606" encoding="csv">0.0,0.0
+34.43737246561796,103.31211739685389
+200.0,103.31211739685389
+					</series>
+					<series title="" type="l" color="0xff0707" encoding="csv">0.0,0.0
+86.01572194602342,258.04716583807027
+200.0,258.04716583807027
+					</series>
+					<series title="" type="l" color="0xff0808" encoding="csv">0.0,0.0
+39.637101860716946,118.91130558215085
+200.0,118.91130558215085
+					</series>
+					<series title="" type="l" color="0xff0909" encoding="csv">0.0,0.0
+49.44040968548507,148.32122905645522
+200.0,148.32122905645522
+					</series>
+					<series title="" type="l" color="0xff0a0a" encoding="csv">0.0,0.0
+98.01927562803031,294.05782688409096
+200.0,294.05782688409096
+					</series>
+					<series title="" type="l" color="0xff0b0b" encoding="csv">0.0,0.0
+53.61239798367024,160.83719395101073
+200.0,160.83719395101073
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+72.52089083194734,217.56267249584204
+200.0,217.56267249584204
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+14.20704028569162,42.621120857074864
+200.0,42.621120857074864
+					</series>
+					<series title="" type="l" color="0xff0d0d" encoding="csv">0.0,0.0
+21.524981409311298,64.5749442279339
+200.0,64.5749442279339
+					</series>
+					<series title="" type="l" color="0xff0e0e" encoding="csv">0.0,0.0
+84.83945734333248,254.51837202999747
+200.0,254.51837202999747
+					</series>
+					<series title="" type="l" color="0xff0f0f" encoding="csv">0.0,0.0
+45.18482210114599,135.55446630343798
+200.0,135.55446630343798
+					</series>
+					<series title="" type="l" color="0xff1010" encoding="csv">0.0,0.0
+86.83266409207137,260.4979922762141
+200.0,260.4979922762141
+					</series>
+					<series title="" type="l" color="0xff1111" encoding="csv">0.0,0.0
+39.53812934923918,118.61438804771754
+200.0,118.61438804771754
+					</series>
+					<series title="" type="l" color="0xff1212" encoding="csv">0.0,0.0
+11.199428886175157,33.598286658525474
+200.0,33.598286658525474
+					</series>
+					<series title="" type="l" color="0xff1313" encoding="csv">0.0,0.0
+90.53338575176896,271.6001572553069
+200.0,271.6001572553069
+					</series>
+					<series title="" type="l" color="0xff1414" encoding="csv">0.0,0.0
+35.27606672141702,105.82820016425106
+200.0,105.82820016425106
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+6.134440726600588,18.403322179801766
+200.0,18.403322179801766
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+96.64246034808458,289.92738104425376
+200.0,289.92738104425376
+					</series>
+					<series title="" type="l" color="0xff1616" encoding="csv">0.0,0.0
+30.320801027119163,90.9624030813575
+200.0,90.9624030813575
+					</series>
+					<series title="" type="l" color="0xff1717" encoding="csv">0.0,0.0
+47.98812591470779,143.96437774412337
+200.0,143.96437774412337
+					</series>
+					<series title="" type="l" color="0xff1818" encoding="csv">0.0,0.0
+94.50061598327012,283.5018479498104
+200.0,283.5018479498104
+					</series>
+					<series title="" type="l" color="0xff1919" encoding="csv">0.0,0.0
+81.29970885347576,243.8991265604273
+200.0,243.8991265604273
+					</series>
+					<series title="" type="l" color="0xff1a1a" encoding="csv">0.0,0.0
+15.171337127685549,45.51401138305665
+200.0,45.51401138305665
+					</series>
+					<series title="" type="l" color="0xff1b1b" encoding="csv">0.0,0.0
+52.21361524891109,156.64084574673328
+200.0,156.64084574673328
+					</series>
+					<series title="" type="l" color="0xff1c1c" encoding="csv">0.0,0.0
+82.12355570867659,246.3706671260298
+200.0,246.3706671260298
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+33.75552236102522,101.26656708307567
+200.0,101.26656708307567
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+75.24560012388976,225.7368003716693
+200.0,225.7368003716693
+					</series>
+					<series title="" type="l" color="0xff1e1e" encoding="csv">0.0,0.0
+47.24407945759595,141.73223837278786
+200.0,141.73223837278786
+					</series>
+					<series title="" type="l" color="0xff1f1f" encoding="csv">0.0,0.0
+40.57363646570594,121.72090939711782
+200.0,121.72090939711782
+					</series>
+					<series title="" type="l" color="0xff2020" encoding="csv">0.0,0.0
+64.42696878220887,193.28090634662664
+200.0,193.28090634662664
+					</series>
+					<series title="" type="l" color="0xff2121" encoding="csv">0.0,0.0
+41.89482396468521,125.68447189405563
+200.0,125.68447189405563
+					</series>
+					<series title="" type="l" color="0xff2222" encoding="csv">0.0,0.0
+58.363727084361024,175.09118125308308
+200.0,175.09118125308308
+					</series>
+					<series title="" type="l" color="0xff2323" encoding="csv">0.0,0.0
+18.06735417339951,54.20206252019854
+200.0,54.20206252019854
+					</series>
+					<series title="" type="l" color="0xff2424" encoding="csv">0.0,0.0
+3.5334734246134762,10.60042027384043
+200.0,10.60042027384043
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+45.56954370345921,136.70863111037764
+200.0,136.70863111037764
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+78.72812231071295,236.18436693213886
+200.0,236.18436693213886
+					</series>
+					<series title="" type="l" color="0xff2626" encoding="csv">0.0,0.0
+34.46257717441768,103.38773152325305
+200.0,103.38773152325305
+					</series>
+					<series title="" type="l" color="0xff2727" encoding="csv">0.0,0.0
+12.236804072745146,36.71041221823544
+200.0,36.71041221823544
+					</series>
+					<series title="" type="l" color="0xff2828" encoding="csv">0.0,0.0
+57.7232426730916,173.1697280192748
+200.0,173.1697280192748
+					</series>
+					<series title="" type="l" color="0xff2929" encoding="csv">0.0,0.0
+71.18927270639689,213.5678181191907
+200.0,213.5678181191907
+					</series>
+					<series title="" type="l" color="0xff2a2a" encoding="csv">0.0,0.0
+75.84235705435277,227.52707116305834
+200.0,227.52707116305834
+					</series>
+					<series title="" type="l" color="0xff2b2b" encoding="csv">0.0,0.0
+89.8644942091778,269.59348262753343
+200.0,269.59348262753343
+					</series>
+					<series title="" type="l" color="0xff2c2c" encoding="csv">0.0,0.0
+16.714680660516027,50.144041981548085
+200.0,50.144041981548085
+					</series>
+					<series title="" type="l" color="0xff2d2d" encoding="csv">0.0,0.0
+0.17137285321950915,0.5141185596585275
+200.0,0.5141185596585275
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+98.45351621042938,295.36054863128817
+200.0,295.36054863128817
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+23.281222512014214,69.84366753604264
+200.0,69.84366753604264
+					</series>
+					<series title="" type="l" color="0xff2f2f" encoding="csv">0.0,0.0
+90.65510579384865,271.96531738154596
+200.0,271.96531738154596
+					</series>
+					<series title="" type="l" color="0xff3030" encoding="csv">0.0,0.0
+20.541450427845124,61.624351283535376
+200.0,61.624351283535376
+					</series>
+					<series title="" type="l" color="0xff3131" encoding="csv">0.0,0.0
+73.77516827546062,221.32550482638186
+200.0,221.32550482638186
+					</series>
+					<series title="" type="l" color="0xff3232" encoding="csv">0.0,0.0
+62.231829483062036,186.69548844918612
+200.0,186.69548844918612
+					</series>
+					<series title="" type="l" color="0xff3333" encoding="csv">0.0,0.0
+99.81664712540807,299.4499413762242
+200.0,299.4499413762242
+					</series>
+					<series title="" type="l" color="0xff3434" encoding="csv">0.0,0.0
+67.56163926329465,202.68491778988397
+200.0,202.68491778988397
+					</series>
+					<series title="" type="l" color="0xff3535" encoding="csv">0.0,0.0
+64.60115183144809,193.8034554943443
+200.0,193.8034554943443
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+21.947567537426952,65.84270261228086
+200.0,65.84270261228086
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+22.46618431527168,67.39855294581504
+200.0,67.39855294581504
+					</series>
+					<series title="" type="l" color="0xff3737" encoding="csv">0.0,0.0
+64.37276988290252,193.11830964870757
+200.0,193.11830964870757
+					</series>
+					<series title="" type="l" color="0xff3838" encoding="csv">0.0,0.0
+27.53938490059227,82.61815470177682
+200.0,82.61815470177682
+					</series>
+					<series title="" type="l" color="0xff3939" encoding="csv">0.0,0.0
+43.91928361728788,131.75785085186365
+200.0,131.75785085186365
+					</series>
+					<series title="" type="l" color="0xff3a3a" encoding="csv">0.0,0.0
+6.619442347437144,19.858327042311434
+200.0,19.858327042311434
+					</series>
+					<series title="" type="l" color="0xff3b3b" encoding="csv">0.0,0.0
+35.11561807245017,105.34685421735051
+200.0,105.34685421735051
+					</series>
+					<series title="" type="l" color="0xff3c3c" encoding="csv">0.0,0.0
+73.91339081805201,221.74017245415604
+200.0,221.74017245415604
+					</series>
+					<series title="" type="l" color="0xff3d3d" encoding="csv">0.0,0.0
+46.979201422072954,140.93760426621887
+200.0,140.93760426621887
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+28.72974367346615,86.18923102039845
+200.0,86.18923102039845
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+17.20560619141907,51.61681857425721
+200.0,51.61681857425721
+					</series>
+					<series title="" type="l" color="0xff3f3f" encoding="csv">0.0,0.0
+70.37695948965849,211.13087846897548
+200.0,211.13087846897548
+					</series>
+					<series title="" type="l" color="0xff4040" encoding="csv">0.0,0.0
+42.05607997719199,126.16823993157598
+200.0,126.16823993157598
+					</series>
+					<series title="" type="l" color="0xff4141" encoding="csv">0.0,0.0
+99.74595124367626,299.2378537310288
+200.0,299.2378537310288
+					</series>
+					<series title="" type="l" color="0xff4242" encoding="csv">0.0,0.0
+21.592615405097607,64.77784621529283
+200.0,64.77784621529283
+					</series>
+					<series title="" type="l" color="0xff4343" encoding="csv">0.0,0.0
+90.8384158043191,272.5152474129573
+200.0,272.5152474129573
+					</series>
+					<series title="" type="l" color="0xff4444" encoding="csv">0.0,0.0
+62.93230834417046,188.79692503251138
+200.0,188.79692503251138
+					</series>
+					<series title="" type="l" color="0xff4545" encoding="csv">0.0,0.0
+20.61363335233182,61.840900056995466
+200.0,61.840900056995466
+					</series>
+					<series title="" type="l" color="0xff4646" encoding="csv">0.0,0.0
+36.73634075094015,110.20902225282046
+200.0,110.20902225282046
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+44.85217616893352,134.55652850680056
+200.0,134.55652850680056
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+65.75244700070472,197.25734100211417
+200.0,197.25734100211417
+					</series>
+					<series title="" type="l" color="0xff4848" encoding="csv">0.0,0.0
+77.8257477330044,233.47724319901323
+200.0,233.47724319901323
+					</series>
+					<series title="" type="l" color="0xff4949" encoding="csv">0.0,0.0
+90.90291752945633,272.708752588369
+200.0,272.708752588369
+					</series>
+					<series title="" type="l" color="0xff4a4a" encoding="csv">0.0,0.0
+47.37961967475713,142.1388590242714
+200.0,142.1388590242714
+					</series>
+					<series title="" type="l" color="0xff4b4b" encoding="csv">0.0,0.0
+26.311925868503753,78.93577760551126
+200.0,78.93577760551126
+					</series>
+					<series title="" type="l" color="0xff4c4c" encoding="csv">0.0,0.0
+5.656344816088677,16.969034448266033
+200.0,16.969034448266033
+					</series>
+					<series title="" type="l" color="0xff4d4d" encoding="csv">0.0,0.0
+91.69783054385336,275.0934916315601
+200.0,275.0934916315601
+					</series>
+					<series title="" type="l" color="0xff4e4e" encoding="csv">0.0,0.0
+44.22858497127891,132.68575491383675
+200.0,132.68575491383675
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+81.96264242287727,245.8879272686318
+200.0,245.8879272686318
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+24.07020092941821,72.21060278825463
+200.0,72.21060278825463
+					</series>
+					<series title="" type="l" color="0xff5050" encoding="csv">0.0,0.0
+29.75411373190582,89.26234119571747
+200.0,89.26234119571747
+					</series>
+					<series title="" type="l" color="0xff5151" encoding="csv">0.0,0.0
+41.664857580326505,124.99457274097952
+200.0,124.99457274097952
+					</series>
+					<series title="" type="l" color="0xff5252" encoding="csv">0.0,0.0
+37.99266417045147,113.97799251135442
+200.0,113.97799251135442
+					</series>
+					<series title="" type="l" color="0xff5353" encoding="csv">0.0,0.0
+19.346649223007265,58.0399476690218
+200.0,58.0399476690218
+					</series>
+					<series title="" type="l" color="0xff5454" encoding="csv">0.0,0.0
+11.718686739914121,35.156060219742365
+200.0,35.156060219742365
+					</series>
+					<series title="" type="l" color="0xff5555" encoding="csv">0.0,0.0
+80.10678824502976,240.3203647350893
+200.0,240.3203647350893
+					</series>
+					<series title="" type="l" color="0xff5656" encoding="csv">0.0,0.0
+82.0509231183678,246.15276935510343
+200.0,246.15276935510343
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+13.185717281885447,39.55715184565634
+200.0,39.55715184565634
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+41.830345918424435,125.49103775527331
+200.0,125.49103775527331
+					</series>
+					<series title="" type="l" color="0xff5858" encoding="csv">0.0,0.0
+26.534329983405772,79.60298995021732
+200.0,79.60298995021732
+					</series>
+					<comment/>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula>simulate [&lt;=200;100] {Car.Slow, Car.Medium-4, Car.Fast-8, Car.End-12} under opt</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2023-02-28 09:53:12 +0100">
+				<option key="--total-runs" value="10000"/>
+				<option key="--discretization" value="0.1"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10000"/>
+				<option key="--runs-pr-state" value="10000"/>
+				<option key="--max-imitation" value="10"/>
+				<plot title="Simulations (100)" xaxis="time" yaxis="value">
+					<series title="Car.Slow" type="l" color="0xff0000" encoding="csv">0.0,0.0
+0.0,1.0
+48.787848488427706,1.0
+48.787848488427706,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0101" encoding="csv">0.0,0.0
+0.0,1.0
+82.52725796774031,1.0
+82.52725796774031,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0202" encoding="csv">0.0,0.0
+0.0,1.0
+7.390295085497201,1.0
+7.390295085497201,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0303" encoding="csv">0.0,0.0
+0.0,1.0
+29.365912219509486,1.0
+29.365912219509486,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+0.0,1.0
+57.95340826734901,1.0
+57.95340826734901,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0404" encoding="csv">0.0,0.0
+0.0,1.0
+97.28997289203109,1.0
+97.28997289203109,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0505" encoding="csv">0.0,0.0
+0.0,1.0
+18.402087874710563,1.0
+18.402087874710563,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0606" encoding="csv">0.0,0.0
+0.0,1.0
+42.838918976485736,1.0
+42.838918976485736,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0707" encoding="csv">0.0,0.0
+0.0,1.0
+20.810659509152178,1.0
+20.810659509152178,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0808" encoding="csv">0.0,0.0
+0.0,1.0
+59.62478865403683,1.0
+59.62478865403683,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0909" encoding="csv">0.0,0.0
+0.0,1.0
+42.52644022926689,1.0
+42.52644022926689,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0a0a" encoding="csv">0.0,0.0
+0.0,1.0
+68.16635890863837,1.0
+68.16635890863837,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0b0b" encoding="csv">0.0,0.0
+0.0,1.0
+95.2910535503179,1.0
+95.2910535503179,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+0.0,1.0
+99.11393600050361,1.0
+99.11393600050361,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0c0c" encoding="csv">0.0,0.0
+0.0,1.0
+72.85332181490959,1.0
+72.85332181490959,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0d0d" encoding="csv">0.0,0.0
+0.0,1.0
+54.0810666512698,1.0
+54.0810666512698,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0e0e" encoding="csv">0.0,0.0
+0.0,1.0
+92.60150173213334,1.0
+92.60150173213334,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff0f0f" encoding="csv">0.0,0.0
+0.0,1.0
+44.205098738893874,1.0
+44.205098738893874,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1010" encoding="csv">0.0,0.0
+0.0,1.0
+31.966889533214275,1.0
+31.966889533214275,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1111" encoding="csv">0.0,0.0
+0.0,1.0
+1.9895778968930247,1.0
+1.9895778968930247,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1212" encoding="csv">0.0,0.0
+0.0,1.0
+57.02406053896994,1.0
+57.02406053896994,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1313" encoding="csv">0.0,0.0
+0.0,1.0
+12.583106616511943,1.0
+12.583106616511943,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1414" encoding="csv">0.0,0.0
+0.0,1.0
+83.64625102840365,1.0
+83.64625102840365,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+0.0,1.0
+64.31177507620306,1.0
+64.31177507620306,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1515" encoding="csv">0.0,0.0
+0.0,1.0
+67.10821595042945,1.0
+67.10821595042945,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1616" encoding="csv">0.0,0.0
+0.0,1.0
+49.58957543130965,1.0
+49.58957543130965,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1717" encoding="csv">0.0,0.0
+0.0,1.0
+60.54869638755918,1.0
+60.54869638755918,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1818" encoding="csv">0.0,0.0
+0.0,1.0
+62.26680797990412,1.0
+62.26680797990412,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1919" encoding="csv">0.0,0.0
+0.0,1.0
+95.98230477422477,1.0
+95.98230477422477,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1a1a" encoding="csv">0.0,0.0
+0.0,1.0
+66.01792259607465,1.0
+66.01792259607465,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1b1b" encoding="csv">0.0,0.0
+0.0,1.0
+63.55945973191411,1.0
+63.55945973191411,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1c1c" encoding="csv">0.0,0.0
+0.0,1.0
+16.32745256647468,1.0
+16.32745256647468,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+0.0,1.0
+19.811232597567145,1.0
+19.811232597567145,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1d1d" encoding="csv">0.0,0.0
+0.0,1.0
+86.58615266904236,1.0
+86.58615266904236,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1e1e" encoding="csv">0.0,0.0
+0.0,1.0
+50.51462494302542,1.0
+50.51462494302542,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff1f1f" encoding="csv">0.0,0.0
+0.0,1.0
+48.74658291228116,1.0
+48.74658291228116,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2020" encoding="csv">0.0,0.0
+0.0,1.0
+36.84574479702861,1.0
+36.84574479702861,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2121" encoding="csv">0.0,0.0
+0.0,1.0
+61.06908929068596,1.0
+61.06908929068596,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2222" encoding="csv">0.0,0.0
+0.0,1.0
+94.40634986385705,1.0
+94.40634986385705,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2323" encoding="csv">0.0,0.0
+0.0,1.0
+85.43587713502349,1.0
+85.43587713502349,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2424" encoding="csv">0.0,0.0
+0.0,1.0
+8.040974382311108,1.0
+8.040974382311108,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+0.0,1.0
+7.743094954639674,1.0
+7.743094954639674,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2525" encoding="csv">0.0,0.0
+0.0,1.0
+70.52765283733608,1.0
+70.52765283733608,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2626" encoding="csv">0.0,0.0
+0.0,1.0
+11.352313426323237,1.0
+11.352313426323237,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2727" encoding="csv">0.0,0.0
+0.0,1.0
+85.04568515345456,1.0
+85.04568515345456,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2828" encoding="csv">0.0,0.0
+0.0,1.0
+44.117177743464715,1.0
+44.117177743464715,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2929" encoding="csv">0.0,0.0
+0.0,1.0
+87.88520772941412,1.0
+87.88520772941412,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2a2a" encoding="csv">0.0,0.0
+0.0,1.0
+86.16427865345032,1.0
+86.16427865345032,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2b2b" encoding="csv">0.0,0.0
+0.0,1.0
+0.6017192732542754,1.0
+0.6017192732542754,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2c2c" encoding="csv">0.0,0.0
+0.0,1.0
+71.41735604964198,1.0
+71.41735604964198,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2d2d" encoding="csv">0.0,0.0
+0.0,1.0
+69.33959431480618,1.0
+69.33959431480618,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+0.0,1.0
+55.47007371205837,1.0
+55.47007371205837,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2e2e" encoding="csv">0.0,0.0
+0.0,1.0
+2.299880026839674,1.0
+2.299880026839674,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff2f2f" encoding="csv">0.0,0.0
+0.0,1.0
+41.36887262575329,1.0
+41.36887262575329,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3030" encoding="csv">0.0,0.0
+0.0,1.0
+64.39424669370057,1.0
+64.39424669370057,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3131" encoding="csv">0.0,0.0
+0.0,1.0
+30.49436479341239,1.0
+30.49436479341239,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3232" encoding="csv">0.0,0.0
+0.0,1.0
+56.59031581599266,1.0
+56.59031581599266,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3333" encoding="csv">0.0,0.0
+0.0,1.0
+23.60255816020072,1.0
+23.60255816020072,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3434" encoding="csv">0.0,0.0
+0.0,1.0
+59.533339692279704,1.0
+59.533339692279704,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3535" encoding="csv">0.0,0.0
+0.0,1.0
+54.458913742564626,1.0
+54.458913742564626,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+0.0,1.0
+36.18174446746708,1.0
+36.18174446746708,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3636" encoding="csv">0.0,0.0
+0.0,1.0
+26.007385901175443,1.0
+26.007385901175443,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3737" encoding="csv">0.0,0.0
+0.0,1.0
+89.72684720065446,1.0
+89.72684720065446,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3838" encoding="csv">0.0,0.0
+0.0,1.0
+89.64464301243426,1.0
+89.64464301243426,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3939" encoding="csv">0.0,0.0
+0.0,1.0
+73.5905470326543,1.0
+73.5905470326543,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3a3a" encoding="csv">0.0,0.0
+0.0,1.0
+14.467551698908212,1.0
+14.467551698908212,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3b3b" encoding="csv">0.0,0.0
+0.0,1.0
+18.37823141831905,1.0
+18.37823141831905,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3c3c" encoding="csv">0.0,0.0
+0.0,1.0
+41.5801024530083,1.0
+41.5801024530083,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3d3d" encoding="csv">0.0,0.0
+0.0,1.0
+5.653635831549765,1.0
+5.653635831549765,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+0.0,1.0
+1.6615798929706218,1.0
+1.6615798929706218,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3e3e" encoding="csv">0.0,0.0
+0.0,1.0
+32.885556947439916,1.0
+32.885556947439916,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff3f3f" encoding="csv">0.0,0.0
+0.0,1.0
+30.373448319733146,1.0
+30.373448319733146,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4040" encoding="csv">0.0,0.0
+0.0,1.0
+92.80768723692746,1.0
+92.80768723692746,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4141" encoding="csv">0.0,0.0
+0.0,1.0
+45.92508350033314,1.0
+45.92508350033314,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4242" encoding="csv">0.0,0.0
+0.0,1.0
+97.50499976798893,1.0
+97.50499976798893,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4343" encoding="csv">0.0,0.0
+0.0,1.0
+45.79205513000489,1.0
+45.79205513000489,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4444" encoding="csv">0.0,0.0
+0.0,1.0
+92.8030524402857,1.0
+92.8030524402857,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4545" encoding="csv">0.0,0.0
+0.0,1.0
+7.853351556695999,1.0
+7.853351556695999,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4646" encoding="csv">0.0,0.0
+0.0,1.0
+70.43397070374341,1.0
+70.43397070374341,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+0.0,1.0
+69.29742908105256,1.0
+69.29742908105256,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4747" encoding="csv">0.0,0.0
+0.0,1.0
+38.8950256863609,1.0
+38.8950256863609,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4848" encoding="csv">0.0,0.0
+0.0,1.0
+80.96901266835631,1.0
+80.96901266835631,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4949" encoding="csv">0.0,0.0
+0.0,1.0
+84.72583212424071,1.0
+84.72583212424071,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4a4a" encoding="csv">0.0,0.0
+0.0,1.0
+12.186548043973746,1.0
+12.186548043973746,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4b4b" encoding="csv">0.0,0.0
+0.0,1.0
+51.94523711688817,1.0
+51.94523711688817,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4c4c" encoding="csv">0.0,0.0
+0.0,1.0
+76.08603425323965,1.0
+76.08603425323965,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4d4d" encoding="csv">0.0,0.0
+0.0,1.0
+22.429611720144752,1.0
+22.429611720144752,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4e4e" encoding="csv">0.0,0.0
+0.0,1.0
+0.8260628674179317,1.0
+0.8260628674179317,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+0.0,1.0
+98.11274649109693,1.0
+98.11274649109693,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff4f4f" encoding="csv">0.0,0.0
+0.0,1.0
+1.1808545561507346,1.0
+1.1808545561507346,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5050" encoding="csv">0.0,0.0
+0.0,1.0
+86.5670101484284,1.0
+86.5670101484284,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5151" encoding="csv">0.0,0.0
+0.0,1.0
+9.171347646042706,1.0
+9.171347646042706,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5252" encoding="csv">0.0,0.0
+0.0,1.0
+99.69690712168814,1.0
+99.69690712168814,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5353" encoding="csv">0.0,0.0
+0.0,1.0
+11.12367599271238,1.0
+11.12367599271238,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5454" encoding="csv">0.0,0.0
+0.0,1.0
+9.594997903332116,1.0
+9.594997903332116,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5555" encoding="csv">0.0,0.0
+0.0,1.0
+82.300668861717,1.0
+82.300668861717,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5656" encoding="csv">0.0,0.0
+0.0,1.0
+22.028673440217975,1.0
+22.028673440217975,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+0.0,1.0
+77.57925139740111,1.0
+77.57925139740111,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5757" encoding="csv">0.0,0.0
+0.0,1.0
+40.08619943633676,1.0
+40.08619943633676,0.0
+200.0,0.0
+					</series>
+					<series title="" type="l" color="0xff5858" encoding="csv">0.0,0.0
+0.0,1.0
+51.68300769291819,1.0
+51.68300769291819,0.0
+200.0,0.0
+					</series>
+					<series title="Car.Medium - 4" type="l" color="0x80ff00" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x80ff01" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x80ff02" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x81ff03" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x81ff04" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x82ff04" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x82ff05" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x83ff06" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x83ff07" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x84ff08" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x84ff09" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x84ff0a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x85ff0b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x85ff0c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x86ff0c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x86ff0d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x87ff0e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x87ff0f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x88ff10" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x88ff11" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x88ff12" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x89ff13" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x89ff14" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8aff15" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8aff15" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8bff16" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8bff17" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8cff18" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8cff19" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8cff1a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8dff1b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8dff1c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8eff1d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8eff1d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8fff1e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x8fff1f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x90ff20" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x90ff21" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x90ff22" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x91ff23" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x91ff24" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x92ff25" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x92ff25" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x93ff26" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x93ff27" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x94ff28" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x94ff29" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x94ff2a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x95ff2b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x95ff2c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x96ff2d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x96ff2e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x97ff2e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x97ff2f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x98ff30" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x98ff31" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x98ff32" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x99ff33" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x99ff34" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9aff35" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9aff36" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9bff36" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9bff37" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9cff38" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9cff39" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9dff3a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9dff3b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9dff3c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9eff3d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9eff3e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9fff3e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0x9fff3f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa0ff40" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa0ff41" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa1ff42" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa1ff43" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa1ff44" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa2ff45" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa2ff46" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa3ff47" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa3ff47" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa4ff48" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa4ff49" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa5ff4a" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa5ff4b" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa5ff4c" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa6ff4d" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa6ff4e" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa7ff4f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa7ff4f" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa8ff50" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa8ff51" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa9ff52" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa9ff53" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xa9ff54" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xaaff55" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xaaff56" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xabff57" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xabff57" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="" type="l" color="0xacff58" encoding="csv">0.0,-4.0
+200.0,-4.0
+					</series>
+					<series title="Car.Fast - 8" type="l" color="0x00ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x01ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x02ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x03ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x04ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x04ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x05ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x06ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x07ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x08ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x09ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x0fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x10ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x11ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x12ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x13ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x14ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x15ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x15ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x16ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x17ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x18ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x19ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x1fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x20ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x21ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x22ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x23ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x24ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x25ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x25ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x26ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x27ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x28ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x29ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x2fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x30ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x31ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x32ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x33ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x34ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x35ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x36ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x36ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x37ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x38ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x39ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x3fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x40ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x41ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x42ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x43ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x44ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x45ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x46ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x47ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x47ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x48ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x49ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4affff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4bffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4cffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4dffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4effff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x4fffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x50ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x51ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x52ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x53ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x54ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x55ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x56ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x57ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x57ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="" type="l" color="0x58ffff" encoding="csv">0.0,-8.0
+200.0,-8.0
+					</series>
+					<series title="Car.End - 12" type="l" color="0x8000ff" encoding="csv">0.0,-12.0
+48.787848488427706,-12.0
+48.787848488427706,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8001ff" encoding="csv">0.0,-12.0
+82.52725796774031,-12.0
+82.52725796774031,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8002ff" encoding="csv">0.0,-12.0
+7.390295085497201,-12.0
+7.390295085497201,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8103ff" encoding="csv">0.0,-12.0
+29.365912219509486,-12.0
+29.365912219509486,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8104ff" encoding="csv">0.0,-12.0
+57.95340826734901,-12.0
+57.95340826734901,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8204ff" encoding="csv">0.0,-12.0
+97.28997289203109,-12.0
+97.28997289203109,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8205ff" encoding="csv">0.0,-12.0
+18.402087874710563,-12.0
+18.402087874710563,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8306ff" encoding="csv">0.0,-12.0
+42.838918976485736,-12.0
+42.838918976485736,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8307ff" encoding="csv">0.0,-12.0
+20.810659509152178,-12.0
+20.810659509152178,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8408ff" encoding="csv">0.0,-12.0
+59.62478865403683,-12.0
+59.62478865403683,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8409ff" encoding="csv">0.0,-12.0
+42.52644022926689,-12.0
+42.52644022926689,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x840aff" encoding="csv">0.0,-12.0
+68.16635890863837,-12.0
+68.16635890863837,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x850bff" encoding="csv">0.0,-12.0
+95.2910535503179,-12.0
+95.2910535503179,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x850cff" encoding="csv">0.0,-12.0
+99.11393600050361,-12.0
+99.11393600050361,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x860cff" encoding="csv">0.0,-12.0
+72.85332181490959,-12.0
+72.85332181490959,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x860dff" encoding="csv">0.0,-12.0
+54.0810666512698,-12.0
+54.0810666512698,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x870eff" encoding="csv">0.0,-12.0
+92.60150173213334,-12.0
+92.60150173213334,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x870fff" encoding="csv">0.0,-12.0
+44.205098738893874,-12.0
+44.205098738893874,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8810ff" encoding="csv">0.0,-12.0
+31.966889533214275,-12.0
+31.966889533214275,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8811ff" encoding="csv">0.0,-12.0
+1.9895778968930247,-12.0
+1.9895778968930247,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8812ff" encoding="csv">0.0,-12.0
+57.02406053896994,-12.0
+57.02406053896994,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8913ff" encoding="csv">0.0,-12.0
+12.583106616511943,-12.0
+12.583106616511943,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8914ff" encoding="csv">0.0,-12.0
+83.64625102840365,-12.0
+83.64625102840365,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8a15ff" encoding="csv">0.0,-12.0
+64.31177507620306,-12.0
+64.31177507620306,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8a15ff" encoding="csv">0.0,-12.0
+67.10821595042945,-12.0
+67.10821595042945,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8b16ff" encoding="csv">0.0,-12.0
+49.58957543130965,-12.0
+49.58957543130965,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8b17ff" encoding="csv">0.0,-12.0
+60.54869638755918,-12.0
+60.54869638755918,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8c18ff" encoding="csv">0.0,-12.0
+62.26680797990412,-12.0
+62.26680797990412,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8c19ff" encoding="csv">0.0,-12.0
+95.98230477422477,-12.0
+95.98230477422477,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8c1aff" encoding="csv">0.0,-12.0
+66.01792259607465,-12.0
+66.01792259607465,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8d1bff" encoding="csv">0.0,-12.0
+63.55945973191411,-12.0
+63.55945973191411,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8d1cff" encoding="csv">0.0,-12.0
+16.32745256647468,-12.0
+16.32745256647468,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8e1dff" encoding="csv">0.0,-12.0
+19.811232597567145,-12.0
+19.811232597567145,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8e1dff" encoding="csv">0.0,-12.0
+86.58615266904236,-12.0
+86.58615266904236,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8f1eff" encoding="csv">0.0,-12.0
+50.51462494302542,-12.0
+50.51462494302542,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x8f1fff" encoding="csv">0.0,-12.0
+48.74658291228116,-12.0
+48.74658291228116,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9020ff" encoding="csv">0.0,-12.0
+36.84574479702861,-12.0
+36.84574479702861,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9021ff" encoding="csv">0.0,-12.0
+61.06908929068596,-12.0
+61.06908929068596,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9022ff" encoding="csv">0.0,-12.0
+94.40634986385705,-12.0
+94.40634986385705,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9123ff" encoding="csv">0.0,-12.0
+85.43587713502349,-12.0
+85.43587713502349,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9124ff" encoding="csv">0.0,-12.0
+8.040974382311108,-12.0
+8.040974382311108,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9225ff" encoding="csv">0.0,-12.0
+7.743094954639674,-12.0
+7.743094954639674,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9225ff" encoding="csv">0.0,-12.0
+70.52765283733608,-12.0
+70.52765283733608,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9326ff" encoding="csv">0.0,-12.0
+11.352313426323237,-12.0
+11.352313426323237,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9327ff" encoding="csv">0.0,-12.0
+85.04568515345456,-12.0
+85.04568515345456,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9428ff" encoding="csv">0.0,-12.0
+44.117177743464715,-12.0
+44.117177743464715,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9429ff" encoding="csv">0.0,-12.0
+87.88520772941412,-12.0
+87.88520772941412,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x942aff" encoding="csv">0.0,-12.0
+86.16427865345032,-12.0
+86.16427865345032,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x952bff" encoding="csv">0.0,-12.0
+0.6017192732542754,-12.0
+0.6017192732542754,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x952cff" encoding="csv">0.0,-12.0
+71.41735604964198,-12.0
+71.41735604964198,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x962dff" encoding="csv">0.0,-12.0
+69.33959431480618,-12.0
+69.33959431480618,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x962eff" encoding="csv">0.0,-12.0
+55.47007371205837,-12.0
+55.47007371205837,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x972eff" encoding="csv">0.0,-12.0
+2.299880026839674,-12.0
+2.299880026839674,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x972fff" encoding="csv">0.0,-12.0
+41.36887262575329,-12.0
+41.36887262575329,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9830ff" encoding="csv">0.0,-12.0
+64.39424669370057,-12.0
+64.39424669370057,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9831ff" encoding="csv">0.0,-12.0
+30.49436479341239,-12.0
+30.49436479341239,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9832ff" encoding="csv">0.0,-12.0
+56.59031581599266,-12.0
+56.59031581599266,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9933ff" encoding="csv">0.0,-12.0
+23.60255816020072,-12.0
+23.60255816020072,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9934ff" encoding="csv">0.0,-12.0
+59.533339692279704,-12.0
+59.533339692279704,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9a35ff" encoding="csv">0.0,-12.0
+54.458913742564626,-12.0
+54.458913742564626,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9a36ff" encoding="csv">0.0,-12.0
+36.18174446746708,-12.0
+36.18174446746708,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9b36ff" encoding="csv">0.0,-12.0
+26.007385901175443,-12.0
+26.007385901175443,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9b37ff" encoding="csv">0.0,-12.0
+89.72684720065446,-12.0
+89.72684720065446,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9c38ff" encoding="csv">0.0,-12.0
+89.64464301243426,-12.0
+89.64464301243426,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9c39ff" encoding="csv">0.0,-12.0
+73.5905470326543,-12.0
+73.5905470326543,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9d3aff" encoding="csv">0.0,-12.0
+14.467551698908212,-12.0
+14.467551698908212,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9d3bff" encoding="csv">0.0,-12.0
+18.37823141831905,-12.0
+18.37823141831905,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9d3cff" encoding="csv">0.0,-12.0
+41.5801024530083,-12.0
+41.5801024530083,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9e3dff" encoding="csv">0.0,-12.0
+5.653635831549765,-12.0
+5.653635831549765,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9e3eff" encoding="csv">0.0,-12.0
+1.6615798929706218,-12.0
+1.6615798929706218,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9f3eff" encoding="csv">0.0,-12.0
+32.885556947439916,-12.0
+32.885556947439916,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0x9f3fff" encoding="csv">0.0,-12.0
+30.373448319733146,-12.0
+30.373448319733146,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa040ff" encoding="csv">0.0,-12.0
+92.80768723692746,-12.0
+92.80768723692746,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa041ff" encoding="csv">0.0,-12.0
+45.92508350033314,-12.0
+45.92508350033314,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa142ff" encoding="csv">0.0,-12.0
+97.50499976798893,-12.0
+97.50499976798893,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa143ff" encoding="csv">0.0,-12.0
+45.79205513000489,-12.0
+45.79205513000489,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa144ff" encoding="csv">0.0,-12.0
+92.8030524402857,-12.0
+92.8030524402857,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa245ff" encoding="csv">0.0,-12.0
+7.853351556695999,-12.0
+7.853351556695999,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa246ff" encoding="csv">0.0,-12.0
+70.43397070374341,-12.0
+70.43397070374341,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa347ff" encoding="csv">0.0,-12.0
+69.29742908105256,-12.0
+69.29742908105256,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa347ff" encoding="csv">0.0,-12.0
+38.8950256863609,-12.0
+38.8950256863609,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa448ff" encoding="csv">0.0,-12.0
+80.96901266835631,-12.0
+80.96901266835631,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa449ff" encoding="csv">0.0,-12.0
+84.72583212424071,-12.0
+84.72583212424071,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa54aff" encoding="csv">0.0,-12.0
+12.186548043973746,-12.0
+12.186548043973746,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa54bff" encoding="csv">0.0,-12.0
+51.94523711688817,-12.0
+51.94523711688817,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa54cff" encoding="csv">0.0,-12.0
+76.08603425323965,-12.0
+76.08603425323965,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa64dff" encoding="csv">0.0,-12.0
+22.429611720144752,-12.0
+22.429611720144752,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa64eff" encoding="csv">0.0,-12.0
+0.8260628674179317,-12.0
+0.8260628674179317,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa74fff" encoding="csv">0.0,-12.0
+98.11274649109693,-12.0
+98.11274649109693,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa74fff" encoding="csv">0.0,-12.0
+1.1808545561507346,-12.0
+1.1808545561507346,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa850ff" encoding="csv">0.0,-12.0
+86.5670101484284,-12.0
+86.5670101484284,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa851ff" encoding="csv">0.0,-12.0
+9.171347646042706,-12.0
+9.171347646042706,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa952ff" encoding="csv">0.0,-12.0
+99.69690712168814,-12.0
+99.69690712168814,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa953ff" encoding="csv">0.0,-12.0
+11.12367599271238,-12.0
+11.12367599271238,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xa954ff" encoding="csv">0.0,-12.0
+9.594997903332116,-12.0
+9.594997903332116,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xaa55ff" encoding="csv">0.0,-12.0
+82.300668861717,-12.0
+82.300668861717,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xaa56ff" encoding="csv">0.0,-12.0
+22.028673440217975,-12.0
+22.028673440217975,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xab57ff" encoding="csv">0.0,-12.0
+77.57925139740111,-12.0
+77.57925139740111,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xab57ff" encoding="csv">0.0,-12.0
+40.08619943633676,-12.0
+40.08619943633676,-11.0
+200.0,-11.0
+					</series>
+					<series title="" type="l" color="0xac58ff" encoding="csv">0.0,-12.0
+51.68300769291819,-12.0
+51.68300769291819,-11.0
+200.0,-11.0
+					</series>
+					<comment/>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula>E[&lt;=200;10000](max:fc) under opt</formula>
+			<comment/>
+			<result outcome="success" type="quantity" value="150.855 ± 1.70139 (95% CI)" timestamp="2023-02-28 09:53:12 +0100">
+				<option key="--total-runs" value="10000"/>
+				<option key="--discretization" value="0.1"/>
+				<option key="--max-iterations" value="10"/>
+				<option key="--eval-runs" value="10"/>
+				<option key="--good-runs" value="10000"/>
+				<option key="--runs-pr-state" value="10000"/>
+				<option key="--max-imitation" value="10"/>
+				<details>150.855 ± 1.70139 (95% CI)</details>
+				<plot title="Probability Density Distribution" xaxis="max: fc" yaxis="probability density">
+					<series title="density" type="b(2.999601)" color="0x0000ff" encoding="csv">0.023727491497993476,0.0033004384936801837
+3.0233289138413975,0.0028670475803686444
+6.0229303361848014,0.003533802831617166
+9.022531758528206,0.003067074155743201
+12.02213318087161,0.0031670874434304793
+15.021734603215013,0.0037004916444292966
+18.02133602555842,0.003067074155743201
+21.020937447901822,0.003800504932116575
+24.020538870245225,0.0028670475803686444
+27.02014029258863,0.0031670874434304793
+30.01974171493203,0.0035671405941795926
+33.019343137275435,0.0036671538818668706
+36.018944559618845,0.003033736393180775
+39.01854598196225,0.003800504932116575
+42.01814740430565,0.0033004384936801837
+45.017748826649054,0.00350046506905474
+48.01735024899246,0.0028670475803686444
+51.01695167133586,0.0025336699547443835
+54.01655309367926,0.003100411918305627
+57.01615451602267,0.0036671538818668706
+60.01575593836607,0.002967060868055923
+63.01535736070948,0.003533802831617166
+66.01495878305288,0.003100411918305627
+69.01456020539628,0.003467127306492314
+72.0141616277397,0.003733829406991723
+75.0137630500831,0.0032337629685553313
+78.0133644724265,0.003000398630618349
+81.0129658947699,0.0040005315074911315
+84.01256731711331,0.0033004384936801837
+87.01216873945671,0.0029337231054934964
+90.01177016180011,0.0032337629685553313
+93.01137158414352,0.003467127306492314
+96.01097300648692,0.0036004783567420186
+99.01057442883032,0.003800504932116575
+102.01017585117373,0.0037004916444292966
+105.00977727351713,0.0028670475803686444
+108.00937869586053,0.003533802831617166
+111.00898011820394,0.0032004252059929053
+114.00858154054734,0.0035671405941795926
+117.00818296289074,0.0031670874434304793
+120.00778438523415,0.00350046506905474
+123.00738580757756,0.0037004916444292966
+126.00698722992097,0.003067074155743201
+129.00658865226436,0.0033337762562426097
+132.00619007460776,0.0032004252059929053
+135.00579149695116,0.0032337629685553313
+138.00539291929456,0.0036004783567420186
+141.00499434163797,0.003067074155743201
+144.0045957639814,0.0031337496808680533
+147.0041971863248,0.0033337762562426097
+150.0037986086682,0.0033004384936801837
+153.0034000310116,0.0032337629685553313
+156.003001453355,0.0032337629685553313
+159.00260287569841,0.0034004517813674617
+162.00220429804182,0.0032004252059929053
+165.00180572038522,0.0034004517813674617
+168.00140714272862,0.0033004384936801837
+171.00100856507203,0.002366981141932253
+174.00060998741543,0.0033337762562426097
+177.00021140975883,0.0033337762562426097
+179.99981283210224,0.00350046506905474
+182.99941425444564,0.0033337762562426097
+185.99901567678904,0.003533802831617166
+188.99861709913245,0.003033736393180775
+191.99821852147585,0.0033671140188050357
+194.99781994381925,0.0032004252059929053
+197.99742136616265,0.003000398630618349
+200.99702278850606,0.0033004384936801837
+203.99662421084946,0.0033337762562426097
+206.99622563319286,0.0036671538818668706
+209.99582705553627,0.003533802831617166
+212.99542847787967,0.00350046506905474
+215.99502990022307,0.002700358767556514
+218.99463132256648,0.003433789543929888
+221.99423274490988,0.0028670475803686444
+224.99383416725328,0.0033337762562426097
+227.9934355895967,0.0033671140188050357
+230.9930370119401,0.003433789543929888
+233.9926384342835,0.00350046506905474
+236.9922398566269,0.0036671538818668706
+239.9918412789703,0.003533802831617166
+242.99144270131373,0.002967060868055923
+245.99104412365713,0.00350046506905474
+248.99064554600054,0.0033004384936801837
+251.99024696834394,0.0039338559823662795
+254.98984839068734,0.0039005182198038535
+257.9894498130307,0.00350046506905474
+260.9890512353741,0.003033736393180775
+263.9886526577175,0.0032004252059929053
+266.9882540800609,0.0036338161193044446
+269.98785550240433,0.0032004252059929053
+272.98745692474773,0.003467127306492314
+275.98705834709114,0.0039338559823662795
+278.98665976943454,0.0036671538818668706
+281.98626119177794,0.00273369653011894
+284.98586261412134,0.0032004252059929053
+287.9854640364648,0.0036671538818668706
+290.9850654588082,0.0032004252059929053
+293.9846668811516,0.0033004384936801837
+296.984268303495,0.0036338161193044446
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">150.85520740483656,0.0
+150.85520740483656,0.0040005315074911315
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.9996, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.023727, 299.98]
+Mean estimate of displayed sample: 150.86 ± 1.7014 (95% CI)</comment>
+				</plot>
+				<plot title="Probability Distribution" xaxis="max: fc" yaxis="probability">
+					<series title="probability" type="b(2.999601)" color="0x0000ff" encoding="csv">0.023727491497993476,0.0099
+3.0233289138413975,0.0086
+6.0229303361848014,0.0106
+9.022531758528206,0.0092
+12.02213318087161,0.0095
+15.021734603215013,0.0111
+18.02133602555842,0.0092
+21.020937447901822,0.0114
+24.020538870245225,0.0086
+27.02014029258863,0.0095
+30.01974171493203,0.0107
+33.019343137275435,0.011
+36.018944559618845,0.0091
+39.01854598196225,0.0114
+42.01814740430565,0.0099
+45.017748826649054,0.0105
+48.01735024899246,0.0086
+51.01695167133586,0.0076
+54.01655309367926,0.0093
+57.01615451602267,0.011
+60.01575593836607,0.0089
+63.01535736070948,0.0106
+66.01495878305288,0.0093
+69.01456020539628,0.0104
+72.0141616277397,0.0112
+75.0137630500831,0.0097
+78.0133644724265,0.009
+81.0129658947699,0.012
+84.01256731711331,0.0099
+87.01216873945671,0.0088
+90.01177016180011,0.0097
+93.01137158414352,0.0104
+96.01097300648692,0.0108
+99.01057442883032,0.0114
+102.01017585117373,0.0111
+105.00977727351713,0.0086
+108.00937869586053,0.0106
+111.00898011820394,0.0096
+114.00858154054734,0.0107
+117.00818296289074,0.0095
+120.00778438523415,0.0105
+123.00738580757756,0.0111
+126.00698722992097,0.0092
+129.00658865226436,0.01
+132.00619007460776,0.0096
+135.00579149695116,0.0097
+138.00539291929456,0.0108
+141.00499434163797,0.0092
+144.0045957639814,0.0094
+147.0041971863248,0.01
+150.0037986086682,0.0099
+153.0034000310116,0.0097
+156.003001453355,0.0097
+159.00260287569841,0.0102
+162.00220429804182,0.0096
+165.00180572038522,0.0102
+168.00140714272862,0.0099
+171.00100856507203,0.0071
+174.00060998741543,0.01
+177.00021140975883,0.01
+179.99981283210224,0.0105
+182.99941425444564,0.01
+185.99901567678904,0.0106
+188.99861709913245,0.0091
+191.99821852147585,0.0101
+194.99781994381925,0.0096
+197.99742136616265,0.009
+200.99702278850606,0.0099
+203.99662421084946,0.01
+206.99622563319286,0.011
+209.99582705553627,0.0106
+212.99542847787967,0.0105
+215.99502990022307,0.0081
+218.99463132256648,0.0103
+221.99423274490988,0.0086
+224.99383416725328,0.01
+227.9934355895967,0.0101
+230.9930370119401,0.0103
+233.9926384342835,0.0105
+236.9922398566269,0.011
+239.9918412789703,0.0106
+242.99144270131373,0.0089
+245.99104412365713,0.0105
+248.99064554600054,0.0099
+251.99024696834394,0.0118
+254.98984839068734,0.0117
+257.9894498130307,0.0105
+260.9890512353741,0.0091
+263.9886526577175,0.0096
+266.9882540800609,0.0109
+269.98785550240433,0.0096
+272.98745692474773,0.0104
+275.98705834709114,0.0118
+278.98665976943454,0.011
+281.98626119177794,0.0082
+284.98586261412134,0.0096
+287.9854640364648,0.011
+290.9850654588082,0.0096
+293.9846668811516,0.0099
+296.984268303495,0.0109
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">150.85520740483656,0.0
+150.85520740483656,0.012
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.9996, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.023727, 299.98]
+Mean estimate of displayed sample: 150.86 ± 1.7014 (95% CI)</comment>
+				</plot>
+				<plot title="Cumulative Probability Distribution" xaxis="max: fc" yaxis="probability">
+					<series title="cumulative" type="l" color="0x000000" encoding="csv">0.023727491497993476,0.0
+3.0233289138413975,0.0099
+6.0229303361848014,0.0185
+9.022531758528206,0.0291
+12.02213318087161,0.0383
+15.021734603215013,0.0478
+18.02133602555842,0.0589
+21.020937447901822,0.0681
+24.020538870245225,0.0795
+27.02014029258863,0.0881
+30.01974171493203,0.0976
+33.019343137275435,0.1083
+36.018944559618845,0.1193
+39.01854598196225,0.1284
+42.01814740430565,0.1398
+45.017748826649054,0.1497
+48.01735024899246,0.1602
+51.01695167133586,0.1688
+54.01655309367926,0.1764
+57.01615451602267,0.1857
+60.01575593836607,0.1967
+63.01535736070948,0.2056
+66.01495878305288,0.2162
+69.01456020539628,0.2255
+72.0141616277397,0.2359
+75.0137630500831,0.2471
+78.0133644724265,0.2568
+81.0129658947699,0.2658
+84.01256731711331,0.2778
+87.01216873945671,0.2877
+90.01177016180011,0.2965
+93.01137158414352,0.3062
+96.01097300648692,0.3166
+99.01057442883032,0.3274
+102.01017585117373,0.3388
+105.00977727351713,0.3499
+108.00937869586053,0.3585
+111.00898011820394,0.3691
+114.00858154054734,0.3787
+117.00818296289074,0.3894
+120.00778438523415,0.3989
+123.00738580757756,0.4094
+126.00698722992097,0.4205
+129.00658865226436,0.4297
+132.00619007460776,0.4397
+135.00579149695116,0.4493
+138.00539291929456,0.459
+141.00499434163797,0.4698
+144.0045957639814,0.479
+147.0041971863248,0.4884
+150.0037986086682,0.4984
+153.0034000310116,0.5083
+156.003001453355,0.518
+159.00260287569841,0.5277
+162.00220429804182,0.5379
+165.00180572038522,0.5475
+168.00140714272862,0.5577
+171.00100856507203,0.5676
+174.00060998741543,0.5747
+177.00021140975883,0.5847
+179.99981283210224,0.5947
+182.99941425444564,0.6052
+185.99901567678904,0.6152
+188.99861709913245,0.6258
+191.99821852147585,0.6349
+194.99781994381925,0.645
+197.99742136616265,0.6546
+200.99702278850606,0.6636
+203.99662421084946,0.6735
+206.99622563319286,0.6835
+209.99582705553627,0.6945
+212.99542847787967,0.7051
+215.99502990022307,0.7156
+218.99463132256648,0.7237
+221.99423274490988,0.734
+224.99383416725328,0.7426
+227.9934355895967,0.7526
+230.9930370119401,0.7627
+233.9926384342835,0.773
+236.9922398566269,0.7835
+239.9918412789703,0.7945
+242.99144270131373,0.8051
+245.99104412365713,0.814
+248.99064554600054,0.8245
+251.99024696834394,0.8344
+254.98984839068734,0.8462
+257.9894498130307,0.8579
+260.9890512353741,0.8684
+263.9886526577175,0.8775
+266.9882540800609,0.8871
+269.98785550240433,0.898
+272.98745692474773,0.9076
+275.98705834709114,0.918
+278.98665976943454,0.9298
+281.98626119177794,0.9408
+284.98586261412134,0.949
+287.9854640364648,0.9586
+290.9850654588082,0.9696
+293.9846668811516,0.9792
+296.984268303495,0.9891
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">150.85520740483656,0.0
+150.85520740483656,1.0
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.9996, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.023727, 299.98]
+Mean estimate of displayed sample: 150.86 ± 1.7014 (95% CI)</comment>
+				</plot>
+				<plot title="Cumulative Probability Confidence Intervals" xaxis="max: fc" yaxis="probability">
+					<series title="upper limit" type="k" color="0x0000dd" encoding="csv">0.023727491497993476,3.688199146187623E-4
+3.0233289138413975,0.012039898546131682
+6.0229303361848014,0.021335720477487666
+9.022531758528206,0.03258469976382602
+12.02213318087161,0.04224844633099473
+15.021734603215013,0.05216506498441758
+18.02133602555842,0.06369444091438524
+21.020937447901822,0.07321447772550117
+24.020538870245225,0.08497542481502546
+27.02014029258863,0.09382601772677199
+30.01974171493203,0.1035843925031679
+33.019343137275435,0.11455522231681656
+36.018944559618845,0.12581415194937892
+39.01854598196225,0.13511509653192647
+42.01814740430565,0.1467516418230538
+45.017748826649054,0.15684461079102832
+48.01735024899246,0.16753773453855805
+51.01695167133586,0.17628771666385176
+54.01655309367926,0.184014507004358
+57.01615451602267,0.19346273212995166
+60.01575593836607,0.20462878095016918
+63.01535736070948,0.21365619337129435
+66.01495878305288,0.22440029519014706
+69.01456020539628,0.23382021074786744
+72.0141616277397,0.24434744552534504
+75.0137630500831,0.25567673235836735
+78.0133644724265,0.2654825024963835
+81.0129658947699,0.274575691070769
+84.01256731711331,0.286692807675024
+87.01216873945671,0.29668350494732565
+90.01177016180011,0.3055597748718077
+93.01137158414352,0.31533923527426283
+96.01097300648692,0.3258192039803181
+99.01057442883032,0.3366966776397704
+102.01017585117373,0.3481724590107129
+105.00977727351713,0.3593404748219707
+108.00937869586053,0.36798934028990704
+111.00898011820394,0.3786450553162573
+114.00858154054734,0.3882912847775813
+117.00818296289074,0.3990381521587395
+120.00778438523415,0.4085757067861487
+123.00738580757756,0.4191128353440725
+126.00698722992097,0.43024714697089445
+129.00658865226436,0.4394717800144021
+132.00619007460776,0.4494946791617499
+135.00579149695116,0.45911289286066814
+138.00539291929456,0.4688275704738608
+141.00499434163797,0.47963953058591874
+144.0045957639814,0.48884609256824824
+147.0041971863248,0.4982493619773625
+150.0037986086682,0.5082490353966795
+153.0034000310116,0.5181448512849306
+156.003001453355,0.5278370244593557
+159.00260287569841,0.5375255027296206
+162.00220429804182,0.5477093906879252
+165.00180572038522,0.5572904693970617
+168.00140714272862,0.5674663530057501
+171.00100856507203,0.577338967276508
+174.00060998741543,0.5844168971363954
+177.00021140975883,0.5943823428057635
+179.99981283210224,0.6043436939075164
+182.99941425444564,0.6147986555457043
+185.99901567678904,0.6247514627757951
+188.99861709913245,0.6352967926309899
+191.99821852147585,0.6443459863608064
+194.99781994381925,0.6543853376609654
+197.99742136616265,0.6639234640299458
+200.99702278850606,0.672861644404332
+203.99662421084946,0.682689293745207
+206.99622563319286,0.6926114837294048
+209.99582705553627,0.703520262791377
+212.99542847787967,0.7140266207018536
+215.99502990022307,0.7244281373179453
+218.99463132256648,0.7324481539664208
+221.99423274490988,0.7426412405181918
+224.99383416725328,0.751147365829392
+227.9934355895967,0.7610327457048508
+230.9930370119401,0.7710107864166257
+233.9926384342835,0.7811797223597835
+236.9922398566269,0.7915388288137226
+239.9918412789703,0.8023829214988155
+242.99144270131373,0.8128241821098313
+245.99104412365713,0.8215840793674472
+248.99064554600054,0.8319102851330296
+251.99024696834394,0.841637437915641
+254.98984839068734,0.8532191350353452
+257.9894498130307,0.8646883178982271
+260.9890512353741,0.8749677836718837
+263.9886526577175,0.883865377787547
+266.9882540800609,0.8932393295877804
+269.98785550240433,0.903865271824467
+272.98745692474773,0.9132065562626897
+275.98705834709114,0.923305144670909
+278.98665976943454,0.9347316704925047
+281.98626119177794,0.945346579503191
+284.98586261412134,0.9532305829002753
+287.9854640364648,0.9624204163513694
+290.9850654588082,0.9728776271024103
+293.9846668811516,0.9819069096136646
+296.984268303495,0.9910416587564193
+					</series>
+					<series title="lower limit" type="k" color="0xdd0000" encoding="csv">0.023727491497993476,0.0
+3.0233289138413975,0.00805330927892533
+6.0229303361848014,0.015949885124840423
+9.022531758528206,0.02589328839112161
+12.02213318087161,0.03462345371082554
+15.021734603215013,0.04370078368784691
+18.02133602555842,0.05436450692767212
+21.020937447901822,0.06323883696726368
+24.020538870245225,0.07427098128998312
+27.02014029258863,0.08261521433466112
+30.01974171493203,0.09185115210288804
+33.019343137275435,0.10227394377487982
+36.018944559618845,0.1130084803409642
+39.01854598196225,0.12190214492882345
+42.01814740430565,0.13305886120945
+45.017748826649054,0.1427600516125891
+48.01735024899246,0.15306074270559905
+51.01695167133586,0.1615057008379703
+54.01655309367926,0.16897444315122512
+57.01615451602267,0.17812075598017324
+60.01575593836607,0.1889482523952283
+63.01535736070948,0.19771562147058416
+66.01495878305288,0.2081653084477506
+69.01456020539628,0.21733994669878823
+72.0141616277397,0.22760662476508503
+75.0137630500831,0.23867078590642996
+78.0133644724265,0.24825934376834943
+81.0129658947699,0.2571608943965506
+84.01256731711331,0.26903676593233455
+87.01216873945671,0.2788402858416851
+90.01177016180011,0.28755887698144594
+93.01137158414352,0.2971737534087739
+96.01097300648692,0.30748771426980337
+99.01057442883032,0.3182039381065508
+102.01017585117373,0.32952150549286413
+105.00977727351713,0.3405470147116315
+108.00937869586053,0.34909313335958037
+111.00898011820394,0.35963123678854064
+114.00858154054734,0.36917940965854307
+117.00818296289074,0.37982630392343586
+120.00778438523415,0.3892832111358387
+123.00738580757756,0.3997399620024744
+126.00698722992097,0.41079918060395487
+129.00658865226436,0.41996918560072455
+132.00619007460776,0.4299404585667561
+135.00579149695116,0.4395166503726199
+138.00539291929456,0.4491963202158773
+141.00499434163797,0.4599780667641275
+144.0045957639814,0.4691661439222613
+147.0041971863248,0.47855739719916823
+150.0037986086682,0.488551896901885
+153.0034000310116,0.4984503124119745
+156.003001453355,0.508152487136658
+159.00260287569841,0.5178583566860141
+162.00220429804182,0.5280685250644839
+165.00180572038522,0.5376818521493448
+168.00140714272862,0.5479000244662354
+171.00100856507203,0.5578216406695699
+174.00060998741543,0.5649395728720631
+177.00021140975883,0.574968298800899
+179.99981283210224,0.585001118871219
+182.99941425444564,0.5955400364402489
+185.99901567678904,0.6055813993199454
+188.99861709913245,0.6162298891053382
+191.99821852147585,0.6253753889774852
+194.99781994381925,0.635530147417117
+197.99742136616265,0.6451864215875512
+200.99702278850606,0.6542429909424589
+203.99662421084946,0.6642095653510824
+206.99622563319286,0.6742815396574802
+209.99582705553627,0.6853663398875265
+212.99542847787967,0.6960537931820455
+215.99502990022307,0.7066461444724034
+218.99463132256648,0.7148213960920136
+221.99423274490988,0.7252222909018292
+224.99383416725328,0.7339111386800711
+227.9934355895967,0.7440199114866756
+230.9930370119401,0.7542359624791531
+233.9926384342835,0.7646609983492354
+236.9922398566269,0.7752957432774966
+239.9918412789703,0.7864452050426278
+242.99144270131373,0.7971977287006772
+245.99104412365713,0.8062326086401208
+248.99064554600054,0.8169002358676026
+251.99024696834394,0.8269672624875015
+254.98984839068734,0.8389786187883277
+257.9894498130307,0.8509025368346289
+260.9890512353741,0.8616168679017183
+263.9886526577175,0.8709138869429515
+266.9882540800609,0.8807342392164121
+269.98785550240433,0.8919018096231908
+272.98745692474773,0.9017547892251055
+275.98705834709114,0.9124499561802114
+278.98665976943454,0.9246162926140238
+281.98626119177794,0.9359946573838466
+284.98586261412134,0.9445055727353794
+287.9854640364648,0.9545096780222098
+290.9850654588082,0.9660452648542605
+293.9846668811516,0.9762092291351151
+296.984268303495,0.9868661673252584
+					</series>
+					<series title="cumulative" type="l" color="0x000000" encoding="csv">0.023727491497993476,0.0
+3.0233289138413975,0.0099
+6.0229303361848014,0.0185
+9.022531758528206,0.0291
+12.02213318087161,0.0383
+15.021734603215013,0.0478
+18.02133602555842,0.0589
+21.020937447901822,0.0681
+24.020538870245225,0.0795
+27.02014029258863,0.0881
+30.01974171493203,0.0976
+33.019343137275435,0.1083
+36.018944559618845,0.1193
+39.01854598196225,0.1284
+42.01814740430565,0.1398
+45.017748826649054,0.1497
+48.01735024899246,0.1602
+51.01695167133586,0.1688
+54.01655309367926,0.1764
+57.01615451602267,0.1857
+60.01575593836607,0.1967
+63.01535736070948,0.2056
+66.01495878305288,0.2162
+69.01456020539628,0.2255
+72.0141616277397,0.2359
+75.0137630500831,0.2471
+78.0133644724265,0.2568
+81.0129658947699,0.2658
+84.01256731711331,0.2778
+87.01216873945671,0.2877
+90.01177016180011,0.2965
+93.01137158414352,0.3062
+96.01097300648692,0.3166
+99.01057442883032,0.3274
+102.01017585117373,0.3388
+105.00977727351713,0.3499
+108.00937869586053,0.3585
+111.00898011820394,0.3691
+114.00858154054734,0.3787
+117.00818296289074,0.3894
+120.00778438523415,0.3989
+123.00738580757756,0.4094
+126.00698722992097,0.4205
+129.00658865226436,0.4297
+132.00619007460776,0.4397
+135.00579149695116,0.4493
+138.00539291929456,0.459
+141.00499434163797,0.4698
+144.0045957639814,0.479
+147.0041971863248,0.4884
+150.0037986086682,0.4984
+153.0034000310116,0.5083
+156.003001453355,0.518
+159.00260287569841,0.5277
+162.00220429804182,0.5379
+165.00180572038522,0.5475
+168.00140714272862,0.5577
+171.00100856507203,0.5676
+174.00060998741543,0.5747
+177.00021140975883,0.5847
+179.99981283210224,0.5947
+182.99941425444564,0.6052
+185.99901567678904,0.6152
+188.99861709913245,0.6258
+191.99821852147585,0.6349
+194.99781994381925,0.645
+197.99742136616265,0.6546
+200.99702278850606,0.6636
+203.99662421084946,0.6735
+206.99622563319286,0.6835
+209.99582705553627,0.6945
+212.99542847787967,0.7051
+215.99502990022307,0.7156
+218.99463132256648,0.7237
+221.99423274490988,0.734
+224.99383416725328,0.7426
+227.9934355895967,0.7526
+230.9930370119401,0.7627
+233.9926384342835,0.773
+236.9922398566269,0.7835
+239.9918412789703,0.7945
+242.99144270131373,0.8051
+245.99104412365713,0.814
+248.99064554600054,0.8245
+251.99024696834394,0.8344
+254.98984839068734,0.8462
+257.9894498130307,0.8579
+260.9890512353741,0.8684
+263.9886526577175,0.8775
+266.9882540800609,0.8871
+269.98785550240433,0.898
+272.98745692474773,0.9076
+275.98705834709114,0.918
+278.98665976943454,0.9298
+281.98626119177794,0.9408
+284.98586261412134,0.949
+287.9854640364648,0.9586
+290.9850654588082,0.9696
+293.9846668811516,0.9792
+296.984268303495,0.9891
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">150.85520740483656,0.0
+150.85520740483656,1.0
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.9996, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.023727, 299.98]
+Mean estimate of displayed sample: 150.86 ± 1.7014 (95% CI)</comment>
+				</plot>
+				<plot title="Frequency Histogram" xaxis="max: fc" yaxis="count">
+					<series title="count" type="b(2.999601)" color="0x0000ff" encoding="csv">0.023727491497993476,99.0
+3.0233289138413975,86.0
+6.0229303361848014,106.0
+9.022531758528206,92.0
+12.02213318087161,95.0
+15.021734603215013,111.0
+18.02133602555842,92.0
+21.020937447901822,114.0
+24.020538870245225,86.0
+27.02014029258863,95.0
+30.01974171493203,107.0
+33.019343137275435,110.0
+36.018944559618845,91.0
+39.01854598196225,114.0
+42.01814740430565,99.0
+45.017748826649054,105.0
+48.01735024899246,86.0
+51.01695167133586,76.0
+54.01655309367926,93.0
+57.01615451602267,110.0
+60.01575593836607,89.0
+63.01535736070948,106.0
+66.01495878305288,93.0
+69.01456020539628,104.0
+72.0141616277397,112.0
+75.0137630500831,97.0
+78.0133644724265,90.0
+81.0129658947699,120.0
+84.01256731711331,99.0
+87.01216873945671,88.0
+90.01177016180011,97.0
+93.01137158414352,104.0
+96.01097300648692,108.0
+99.01057442883032,114.0
+102.01017585117373,111.0
+105.00977727351713,86.0
+108.00937869586053,106.0
+111.00898011820394,96.0
+114.00858154054734,107.0
+117.00818296289074,95.0
+120.00778438523415,105.0
+123.00738580757756,111.0
+126.00698722992097,92.0
+129.00658865226436,100.0
+132.00619007460776,96.0
+135.00579149695116,97.0
+138.00539291929456,108.0
+141.00499434163797,92.0
+144.0045957639814,94.0
+147.0041971863248,100.0
+150.0037986086682,99.0
+153.0034000310116,97.0
+156.003001453355,97.0
+159.00260287569841,102.0
+162.00220429804182,96.0
+165.00180572038522,102.0
+168.00140714272862,99.0
+171.00100856507203,71.0
+174.00060998741543,100.0
+177.00021140975883,100.0
+179.99981283210224,105.0
+182.99941425444564,100.0
+185.99901567678904,106.0
+188.99861709913245,91.0
+191.99821852147585,101.0
+194.99781994381925,96.0
+197.99742136616265,90.0
+200.99702278850606,99.0
+203.99662421084946,100.0
+206.99622563319286,110.0
+209.99582705553627,106.0
+212.99542847787967,105.0
+215.99502990022307,81.0
+218.99463132256648,103.0
+221.99423274490988,86.0
+224.99383416725328,100.0
+227.9934355895967,101.0
+230.9930370119401,103.0
+233.9926384342835,105.0
+236.9922398566269,110.0
+239.9918412789703,106.0
+242.99144270131373,89.0
+245.99104412365713,105.0
+248.99064554600054,99.0
+251.99024696834394,118.0
+254.98984839068734,117.0
+257.9894498130307,105.0
+260.9890512353741,91.0
+263.9886526577175,96.0
+266.9882540800609,109.0
+269.98785550240433,96.0
+272.98745692474773,104.0
+275.98705834709114,118.0
+278.98665976943454,110.0
+281.98626119177794,82.0
+284.98586261412134,96.0
+287.9854640364648,110.0
+290.9850654588082,96.0
+293.9846668811516,99.0
+296.984268303495,109.0
+					</series>
+					<series title="average" type="pl" color="0x00dd00" encoding="csv">150.85520740483656,0.0
+150.85520740483656,120.0
+					</series>
+					<comment>Parameters: α=0.05, ε=0.05, bucket width=2.9996, bucket count=100
+Runs: 10000 in total, 10000 (100%) displayed, 0 (0%) remaining
+Span of displayed sample: [0.023727, 299.98]
+Mean estimate of displayed sample: 150.86 ± 1.7014 (95% CI)</comment>
+				</plot>
+			</result>
+		</query>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+	</queries>
+</nta>

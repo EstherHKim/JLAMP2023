@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock fc = 0.0; </declaration>
+	<template>
+		<name x="5" y="5">Car</name>
+		<declaration>// Place local declarations here.
+clock x; </declaration>
+		<location id="id0" x="-238" y="0">
+			<name x="-263" y="-34">Start</name>
+			<urgent/>
+		</location>
+		<location id="id1" x="-170" y="-68">
+			<name x="-180" y="-102">L1</name>
+			<label kind="invariant" x="-153" y="-102">fc'==3 &amp;&amp; x&lt;=100</label>
+		</location>
+		<location id="id2" x="-170" y="59">
+			<name x="-178" y="68">H1</name>
+			<label kind="invariant" x="-153" y="68">fc'==10 &amp;&amp; x&lt;=50</label>
+		</location>
+		<location id="id3" x="-34" y="0">
+			<urgent/>
+		</location>
+		<location id="id4" x="34" y="-68">
+			<name x="24" y="-102">L2</name>
+			<label kind="invariant" x="51" y="-102">fc'==1 &amp;&amp; x&lt;=100</label>
+		</location>
+		<location id="id5" x="34" y="68">
+			<name x="25" y="76">H2</name>
+			<label kind="invariant" x="51" y="76">fc'==8 &amp;&amp; x&lt;=100</label>
+		</location>
+		<location id="id6" x="170" y="0">
+			<name x="160" y="-34">End</name>
+			<label kind="invariant" x="195" y="-34">fc'==0</label>
+		</location>
+		<init ref="id0"/>
+		<transition id="id7" controllable="false">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="127" y="25">x=0</label>
+		</transition>
+		<transition id="id8" controllable="false">
+			<source ref="id4"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="102" y="-59">x=0</label>
+		</transition>
+		<transition id="id9">
+			<source ref="id3"/>
+			<target ref="id5"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id3"/>
+			<target ref="id4"/>
+		</transition>
+		<transition id="id11" controllable="false">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-102" y="25">x=0</label>
+		</transition>
+		<transition id="id12" controllable="false">
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-102" y="-59">x=0</label>
+		</transition>
+		<transition id="id13">
+			<source ref="id0"/>
+			<target ref="id2"/>
+		</transition>
+		<transition id="id14">
+			<source ref="id0"/>
+			<target ref="id1"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+//Process = Template();
+// List one or more processes to be composed into a system.
+system Car;
+</system>
+	<queries>
+		<query>
+			<formula>// Optimal control </formula>
+			<comment/>
+		</query>
+		<query>
+			<formula>strategy opt = minE(fc) [&lt;=200]:&lt;&gt;Car.End</formula>
+			<comment/>
+		</query>
+	</queries>
+</nta>
