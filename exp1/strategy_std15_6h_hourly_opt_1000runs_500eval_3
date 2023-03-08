@@ -1,0 +1,66 @@
+{"version":1.0,"type":"state->regressor","representation":"map","actions":{
+		"0":"Controller._id3->Controller._id1 { 1, tau, x := 0, Open := Opening[0], Qout := Qomax * Open }",
+		"1":"Controller._id3->Controller._id1 { 1, tau, x := 0, Open := Opening[1], Qout := Qomax * Open }",
+		"2":"Controller._id3->Controller._id1 { 1, tau, x := 0, Open := Opening[2], Qout := Qomax * Open }",
+		"3":"Controller._id2->Controller._id1 { 1, tau, Open := Opening[0] }",
+		"4":"Controller._id2->Controller._id1 { 1, tau, Open := Opening[1] }",
+		"5":"Controller._id2->Controller._id1 { 1, tau, Open := Opening[2] }",
+		"6":"WAIT"
+	},"statevars":[
+	],"pointvars":[
+		"rain",
+		"sensor_w"
+	],"locationnames":{
+		"RainM.location":{
+			"0":"Dry",
+			"1":"Raining"
+		},
+		"UrbanCatchment.location":{
+			"0":"_id0"
+		},
+		"Controller.location":{
+			"0":"_id1",
+			"1":"_id2",
+			"2":"_id3"
+		},
+		"Pond.location":{
+			"0":"_id7"
+		},
+		"Cost.location":{
+			"0":"_id8"
+		},
+		"Sensor.location":{
+			"0":"SensorOff",
+			"1":"SensorOn",
+			"2":"Detect"
+		}
+	},"regressors":{
+		"(1)":
+			{"type":"act->point->val","representation":"simpletree","minimize":1,"regressor":
+				{
+					"3":
+						197.6620326459165,
+					"1":
+						196.651443203894,
+					"2":
+						{"var":1,"bound":94.42835777600715,
+							"low":
+								186.8993185125855,
+							"high":
+								155.0617198686017
+						},
+					"0":
+						{"var":1,"bound":105.0526291953545,
+							"low":
+								201.6060751334895,
+							"high":
+								220.1084080774323
+						},
+					"4":
+						199.7293547452149,
+					"5":
+						198.5806035152086
+				}
+			}
+	}
+}
